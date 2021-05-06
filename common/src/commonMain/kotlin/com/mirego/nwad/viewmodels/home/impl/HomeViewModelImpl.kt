@@ -2,27 +2,11 @@ package com.mirego.nwad.viewmodels.home.impl
 
 import com.mirego.trikot.kword.I18N
 import com.mirego.trikot.streams.reactive.RefreshablePublisher
-import com.mirego.trikot.streams.reactive.just
-import com.mirego.trikot.viewmodels.mutable.MutableButtonViewModel
-import com.mirego.trikot.viewmodels.mutable.MutableLabelViewModel
-import com.mirego.trikot.viewmodels.mutable.MutableViewModel
-import com.mirego.trikot.viewmodels.properties.ViewModelAction
-import com.mirego.nwad.localization.KWordTranslation
 import com.mirego.nwad.viewmodels.home.HomeViewModel
+import com.mirego.trikot.streams.cancellable.CancellableManager
+import com.mirego.trikot.viewmodels.declarative.impl.ViewModelImpl
 
 class HomeViewModelImpl(
     refreshableQuotePublisher: RefreshablePublisher<String>,
     i18N: I18N
-) :
-    HomeViewModel, MutableViewModel() {
-
-    override val quoteLabel = MutableLabelViewModel().also {
-        it.text = refreshableQuotePublisher
-    }
-
-    override val refreshButton = MutableButtonViewModel().also {
-        it.text = i18N[KWordTranslation.REFRESH_BUTTON].just()
-        it.action = ViewModelAction {
-            refreshableQuotePublisher.refresh()
-        }.just()
-    } }
+) : HomeViewModel, ViewModelImpl(CancellableManager())
