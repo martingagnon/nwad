@@ -64,7 +64,7 @@ kotlin {
                 transitiveExport = true
                 export "com.mirego.trikot:trikotFoundation:$trikot_foundation_version"
                 export "com.mirego.trikot:streams:$trikot_streams_version"
-                export "com.mirego.trikot:viewmodels:$trikot_viewmodels_version"
+                export "com.mirego.trikot:viewmodels-declarative:$trikot_viewmodels_declarative_version"
                 export "com.mirego.trikot:http:$trikot_http_version"
                 export "com.mirego.trikot:kword:$trikot_kword_version"
             }
@@ -83,7 +83,7 @@ kotlin {
             dependencies {
                 api "com.mirego.trikot:trikotFoundation:$trikot_foundation_version"
                 api "com.mirego.trikot:streams:$trikot_streams_version"
-                api "com.mirego.trikot:viewmodels:$trikot_viewmodels_version"
+                api "com.mirego.trikot:viewmodels-declarative:$trikot_viewmodels_declarative_version"
                 api "com.mirego.trikot:http:$trikot_http_version"
                 api "com.mirego.trikot:kword:$trikot_kword_version"
                 implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$serialization_version"
@@ -102,9 +102,9 @@ kotlin {
         androidMain {
             dependsOn commonMain
             dependencies {
-                implementation "com.mirego.trikot.viewmodels:android-ktx:$trikot_viewmodels_android_ktx_version"
-                implementation "com.mirego.trikot.http:android-ktx:$trikot_http_android_ktx_version"
-                implementation "com.mirego.trikot.kword:android-ktx:$trikot_kword_android_ktx_version"
+                //implementation "com.mirego.trikot.viewmodels:android-ktx:$trikot_viewmodels_android_ktx_version"
+                //implementation "com.mirego.trikot.http:android-ktx:$trikot_http_android_ktx_version"
+                //implementation "com.mirego.trikot.kword:android-ktx:$trikot_kword_android_ktx_version"
                 implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
                 implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
             }
