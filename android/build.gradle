@@ -11,10 +11,10 @@ android {
     compileSdkVersion 30
 
     defaultConfig {
-        applicationId "com.trikot.sample"
+        applicationId "com.mirego.nwad"
         versionCode 1
         versionName "1.0"
-        archivesBaseName = "TrikotFrameworkName-$versionCode"
+        archivesBaseName = "NwadFramework-$versionCode"
 
         minSdkVersion 21
         targetSdkVersion 30

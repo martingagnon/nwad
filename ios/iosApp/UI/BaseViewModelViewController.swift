@@ -1,4 +1,4 @@
-import TrikotFrameworkName
+import NwadFramework
 import UIKit
 
 class BaseViewModelViewController<V: BaseViewModelView<VM>, ND: BaseNavigationDelegate, VM: ViewModel, VMC: BaseViewModelController<ND, VM>>: UIViewController {

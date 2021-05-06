@@ -8,7 +8,7 @@
 
         <variable
                 name="viewModel"
-                type="com.trikot.sample.viewmodels.home.HomeViewModel" />
+                type="com.mirego.nwad.viewmodels.home.HomeViewModel" />
 
         <variable
                 name="lifecycleOwnerWrapper"

@@ -1,5 +1,5 @@
 import Foundation
-import TrikotFrameworkName
+import NwadFramework
 
 class Core {
     static let shared = Core()

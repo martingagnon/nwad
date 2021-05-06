@@ -5,7 +5,7 @@ platform :ios, platformVersion
 
 install! 'cocoapods', :disable_input_output_paths => true
 
-ENV['TRIKOT_FRAMEWORK_NAME']='TrikotFrameworkName'
+ENV['TRIKOT_FRAMEWORK_NAME']='NwadFramework'
 
 target 'iosApp' do
   use_frameworks!
@@ -13,7 +13,7 @@ target 'iosApp' do
   properties = load_properties('../gradle.properties')
 
   pod 'SwiftLint'
-  pod 'TrikotFrameworkName', :path => '../common'
+  pod 'NwadFramework', :path => '../common'
   pod 'Trikot.http', :git => 'git@github.com:mirego/trikot.http.git', :tag => properties['trikot_http_version'], :inhibit_warnings => true
   pod 'Trikot.viewmodels', :git => 'git@github.com:mirego/trikot.viewmodels.git', :tag => properties['trikot_viewmodels_version'], :inhibit_warnings => true
   pod 'Trikot.streams', :git => 'git@github.com:mirego/trikot.streams.git', :tag => properties['trikot_streams_version'], :inhibit_warnings => true

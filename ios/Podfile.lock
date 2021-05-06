@@ -3,18 +3,18 @@ PODS:
   - SwiftLint (0.39.2)
   - Trikot.http (1.0.1):
     - ReachabilitySwift (~> 4.3.1)
-    - TrikotFrameworkName
+    - NwadFramework
   - Trikot.kword (0.0.1):
-    - TrikotFrameworkName
+    - NwadFramework
   - Trikot.streams (0.0.1):
     - Trikot.streams/streams (= 0.0.1)
-    - TrikotFrameworkName
+    - NwadFramework
   - Trikot.streams/streams (0.0.1):
-    - TrikotFrameworkName
+    - NwadFramework
   - Trikot.viewmodels (0.0.1):
     - Trikot.streams
-    - TrikotFrameworkName
-  - TrikotFrameworkName (0.0.1)
+    - NwadFramework
+  - NwadFramework (0.0.1)
 
 DEPENDENCIES:
   - SwiftLint
@@ -22,7 +22,7 @@ DEPENDENCIES:
   - "Trikot.kword (from `git@github.com:mirego/trikot.kword.git`, tag `1.0.2`)"
   - "Trikot.streams (from `git@github.com:mirego/trikot.streams.git`, tag `1.0.8`)"
   - "Trikot.viewmodels (from `git@github.com:mirego/trikot.metaviews.git`, tag `1.0.6`)"
-  - TrikotFrameworkName (from `../common`)
+  - NwadFramework (from `../common`)
 
 SPEC REPOS:
   trunk:
@@ -42,7 +42,7 @@ EXTERNAL SOURCES:
   Trikot.viewmodels:
     :git: "git@github.com:mirego/trikot.metaviews.git"
     :tag: 1.0.6
-  TrikotFrameworkName:
+  NwadFramework:
     :path: "../common"
 
 CHECKOUT OPTIONS:
@@ -66,7 +66,7 @@ SPEC CHECKSUMS:
   Trikot.kword: 4021e56410368c6227bcd2cf7cfac6986135ea26
   Trikot.streams: 4f392f5594d360c83926d0e53155d84d6bfb2aa1
   Trikot.viewmodels: b13076cb7a8a294bd045b78e4bc5d001567ee7d3
-  TrikotFrameworkName: 4df9ba5d8f48233ae5bf199b61b46dc50fa733f7
+  NwadFramework: 4df9ba5d8f48233ae5bf199b61b46dc50fa733f7
 
 PODFILE CHECKSUM: 3ec312e870ab7ae117e87ecf30d70c50759135d8
 

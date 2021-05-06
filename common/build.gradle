@@ -29,7 +29,7 @@ repositories {
     maven { url('https://s3.amazonaws.com/mirego-maven/public') }
 }
 
-group 'com.trikot.sample'
+group 'com.mirego.nwad'
 
 android {
     compileSdkVersion 30
@@ -47,7 +47,7 @@ android {
 
 kword {
     translationFile 'src/commonMain/resources/translations/translation.en.json'
-    enumClassName 'com.trikot.sample.localization.KWordTranslation'
+    enumClassName 'com.mirego.nwad.localization.KWordTranslation'
     generatedDir 'src/commonMain/generated'
 }
 

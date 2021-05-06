@@ -1,4 +1,4 @@
-import TrikotFrameworkName
+import NwadFramework
 import UIKit
 
 class HomeView: BaseViewModelView<HomeViewModel> {

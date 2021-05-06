@@ -1,4 +1,4 @@
-import TrikotFrameworkName
+import NwadFramework
 import UIKit
 
 class HomeViewController: BaseViewModelViewController<HomeView, BaseNavigationDelegate, HomeViewModel, HomeViewModelController> {

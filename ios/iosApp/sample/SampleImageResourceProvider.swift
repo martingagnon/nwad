@@ -1,6 +1,6 @@
 import Foundation
 import Trikot_viewmodels
-import TrikotFrameworkName
+import NwadFramework
 
 class SampleImageResourceProvider: ImageViewModelResourceProvider {
     func image(fromResource resource: ImageResource?) -> UIImage? {

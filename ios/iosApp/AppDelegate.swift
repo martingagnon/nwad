@@ -1,7 +1,7 @@
 import Trikot_http
 import Trikot_kword
 import Trikot_viewmodels
-import TrikotFrameworkName
+import NwadFramework
 import UIKit
 
 @UIApplicationMain
