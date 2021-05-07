@@ -1,13 +1,3 @@
-buildscript {
-    dependencies {
-        classpath("com.github.nbaztec:coveralls-jacoco-gradle-plugin:1.2.5") {
-            // The plugin is using an older version (1.3.72) which prevent us from using 1.4+
-            // https://github.com/nbaztec/coveralls-jacoco-gradle-plugin/blob/main/build.gradle.kts#L35
-            exclude group: 'org.jetbrains.kotlin', module: 'kotlin-gradle-plugin'
-        }
-    }
-}
-
 plugins {
     id 'com.android.library'
     id 'kotlin-multiplatform'
@@ -16,14 +6,13 @@ plugins {
     id 'mirego.kword' version '0.5'
     id 'jacoco'
 }
-// We must use this approach to load the plugin since we enforced the exclusion of a transitive dependency
-apply plugin: 'com.github.nbaztec.coveralls-jacoco'
 
 repositories {
     google()
     jcenter()
     mavenCentral()
     mavenLocal()
+    maven { url "https://maven.pkg.jetbrains.space/kotlin/p/kotlin/kotlin-js-wrappers" }
     maven { url "https://kotlin.bintray.com/kotlinx" }
     maven { url 'https://jitpack.io' }
     maven { url('https://s3.amazonaws.com/mirego-maven/public') }
@@ -34,7 +23,7 @@ group 'com.mirego.nwad'
 android {
     compileSdkVersion 30
     defaultConfig {
-        minSdkVersion 21
+        minSdkVersion 24
     }
     sourceSets {
         main.resources.srcDir('src/commonMain/resources/')
@@ -71,11 +60,31 @@ kotlin {
         }
     }
 
+    js(IR) {
+        moduleName = "nwad"
+
+        browser {
+            commonWebpackConfig {
+                cssSupport.enabled = true
+            }
+
+            testTask {
+                useKarma {
+                    useChromeHeadless()
+                }
+            }
+        }
+
+        binaries.executable()
+    }
+
     sourceSets {
         all {
             languageSettings {
                 useExperimentalAnnotation('kotlin.Experimental')
                 useExperimentalAnnotation('kotlin.time.ExperimentalTime')
+                useExperimentalAnnotation('kotlin.js.ExperimentalJsExport')
+                useExperimentalAnnotation('kotlinx.serialization.ExperimentalSerializationApi')
             }
         }
 
@@ -95,16 +104,12 @@ kotlin {
             dependencies {
                 implementation 'org.jetbrains.kotlin:kotlin-test-common'
                 implementation 'org.jetbrains.kotlin:kotlin-test-annotations-common'
-                implementation "io.mockk:mockk-common:$mockk_version"
             }
         }
 
         androidMain {
             dependsOn commonMain
             dependencies {
-                //implementation "com.mirego.trikot.viewmodels:android-ktx:$trikot_viewmodels_android_ktx_version"
-                //implementation "com.mirego.trikot.http:android-ktx:$trikot_http_android_ktx_version"
-                //implementation "com.mirego.trikot.kword:android-ktx:$trikot_kword_android_ktx_version"
                 implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
                 implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
             }
@@ -121,6 +126,24 @@ kotlin {
 
         iosMain {
             dependsOn commonMain
+        }
+
+        jsMain {
+            dependsOn commonMain
+            dependencies {
+                implementation "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
+                implementation "org.jetbrains:kotlin-extensions:1.0.1-pre.154-kotlin-1.5.0"
+                implementation(npm("exports-loader", "1.1.1"))
+                implementation(npm("raw-loader", "4.0.2"))
+            }
+        }
+
+        jsTest {
+            dependencies {
+                implementation "org.jetbrains.kotlin:kotlin-test-js"
+                implementation(npm("exports-loader", "1.1.1"))
+                implementation(npm("raw-loader", "4.0.2"))
+            }
         }
     }
 }
@@ -189,12 +212,4 @@ task jacocoTestReport(type: JacocoReport, dependsOn: "test") {
     getSourceDirectories().setFrom(files([
             "src/commonMain/kotlin"
     ]))
-}
-tasks.find { it.name.find('coverallsJacoco') }.mustRunAfter jacocoTestReport
-
-coverallsJacoco {
-    reportPath = "${buildDir}/reports/jacocoTestReport/jacocoTestReport.xml"
-    reportSourceSets = files([
-            "src/commonMain/kotlin"
-    ])
 }
