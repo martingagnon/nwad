@@ -7,11 +7,11 @@ buildscript {
 
     dependencies {
         classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:1.0.0"
-        classpath 'com.android.tools.build:gradle:4.2.0'
+        classpath 'com.android.tools.build:gradle:4.1.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
-        classpath 'com.google.gms:google-services:4.3.5'
-        classpath 'org.jlleitschuh.gradle:ktlint-gradle:10.0.0'
+        classpath 'com.google.gms:google-services:4.3.4'
+        classpath 'org.jlleitschuh.gradle:ktlint-gradle:9.1.1'
     }
 }
 
@@ -41,6 +41,8 @@ dependencies {
     implementation("org.jetbrains:kotlin-styled:5.2.3-pre.154-kotlin-1.5.0")
 
     implementation(npm("bootstrap", "5.0.0-beta2"))
+    implementation(npm("exports-loader", "1.1.1"))
+    implementation(npm("raw-loader", "4.0.2"))
 }
 
 kotlin {
