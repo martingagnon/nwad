@@ -22,4 +22,4 @@ pluginManagement {
 }
 rootProject.name = 'NWAD'
 
-include ':android', 'common'
+include ':android', ':common', ':web'

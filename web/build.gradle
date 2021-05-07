@@ -1,0 +1,62 @@
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+
+    dependencies {
+        classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:1.0.0"
+        classpath 'com.android.tools.build:gradle:4.2.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
+        classpath 'com.google.gms:google-services:4.3.5'
+        classpath 'org.jlleitschuh.gradle:ktlint-gradle:10.0.0'
+    }
+}
+
+plugins {
+    id 'org.jetbrains.kotlin.js'
+}
+
+repositories {
+    google()
+    jcenter()
+    mavenLocal()
+    maven { url "https://maven.pkg.jetbrains.space/kotlin/p/kotlin/kotlin-js-wrappers" }
+    maven { url "https://kotlin.bintray.com/kotlinx" }
+    maven { url "https://s3.amazonaws.com/mirego-maven/public" }
+}
+
+dependencies {
+    api project(":common")
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-js"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-js"
+
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$serialization_version"
+
+    implementation("org.jetbrains:kotlin-react:$react_version-kotlin-1.5.0")
+    implementation("org.jetbrains:kotlin-react-dom:$react_version-kotlin-1.5.0")
+    implementation("org.jetbrains:kotlin-react-router-dom:5.2.0-pre.154-kotlin-1.5.0")
+    implementation("org.jetbrains:kotlin-styled:5.2.3-pre.154-kotlin-1.5.0")
+
+    implementation(npm("bootstrap", "5.0.0-beta2"))
+}
+
+kotlin {
+    js(IR) {
+        browser {
+            commonWebpackConfig {
+                cssSupport.enabled = true
+            }
+
+            testTask {
+                useKarma {
+                    useChromeHeadless()
+                }
+            }
+        }
+
+        binaries.executable()
+    }
+}

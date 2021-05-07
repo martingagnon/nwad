@@ -4,7 +4,7 @@ import android.app.Application
 import com.mirego.trikot.http.HttpConfiguration
 import com.mirego.trikot.http.android.ktx.AndroidConnectivityPublisher
 import com.mirego.trikot.http.android.ktx.requestFactory.KtorHttpRequestFactory
-import com.mirego.trikot.kword.android.ktx.AndroidKWord
+import com.mirego.trikot.kword.android.AndroidKWord
 import com.mirego.trikot.streams.reactive.distinctUntilChanged
 import com.mirego.trikot.viewmodels.resources.ImageViewModelResourceManager
 import com.mirego.nwad.resource.SampleImageResourceProvider
