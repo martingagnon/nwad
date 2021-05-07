@@ -16,7 +16,7 @@ android {
         versionName "1.0"
         archivesBaseName = "NwadFramework-$versionCode"
 
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdkVersion 30
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
