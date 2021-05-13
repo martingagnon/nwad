@@ -3,4 +3,7 @@ package com.mirego.nwad.models
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Quote(val quote: String, val author: String)
+data class Avatar(
+    val large: String,
+    val thumb: String
+)

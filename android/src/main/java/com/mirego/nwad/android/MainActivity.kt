@@ -11,6 +11,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import android.os.Bundle
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,8 +24,10 @@ import com.mirego.nwad.viewmodels.home.HomeViewModelController
 import com.mirego.nwad.viewmodels.home.impl.HomeViewModelImpl
 import com.mirego.trikot.streams.cancellable.CancellableManager
 import com.mirego.trikot.viewmodels.declarative.compose.extensions.observeAsState
+import com.mirego.trikot.viewmodels.declarative.compose.viewmodel.RemoteImage
 import com.mirego.trikot.viewmodels.declarative.controller.NavigationDelegate
 import com.mirego.trikot.viewmodels.declarative.controller.ViewModelActivity
+import com.mirego.trikot.viewmodels.declarative.properties.ImageDescriptor
 
 class MainActivity :
     ViewModelActivity<HomeViewModelController, HomeViewModel, NavigationDelegate>() {
@@ -45,15 +49,22 @@ class MainActivity :
 
         val obsText =
             homeViewModel.labelViewModel.observeAsState(property = homeViewModel.labelViewModel::text)
+        val moments =
+            homeViewModel.moments.observeAsState(property = homeViewModel.moments::elements)
 
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight(),
+                .fillMaxHeight()
+                .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(obsText.value, color = Color.Blue)
+            moments.value.forEach { moment ->
+                RemoteImage(imageUrl = (moment.image.image as ImageDescriptor.Remote).url)
+                Text(moment.title.text, color = Color.Black)
+            }
         }
     }
 }

@@ -1,4 +1,7 @@
 PODS:
+  - Kingfisher/Core (5.15.8)
+  - Kingfisher/SwiftUI (5.15.8):
+    - Kingfisher/Core
   - NwadFramework (0.0.1)
   - ReachabilitySwift (5.0.0)
   - SwiftLint (0.39.2)
@@ -17,6 +20,7 @@ PODS:
     - Trikot.streams
 
 DEPENDENCIES:
+  - Kingfisher/SwiftUI (~> 5.0)
   - NwadFramework (from `../common`)
   - SwiftLint
   - "Trikot.http (from `git@github.com:mirego/trikot.http.git`, tag `2.0.2`)"
@@ -26,6 +30,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Kingfisher
     - ReachabilitySwift
     - SwiftLint
 
@@ -60,6 +65,7 @@ CHECKOUT OPTIONS:
     :git: "git@github.com:mirego/trikot.viewmodels.declarative.git"
 
 SPEC CHECKSUMS:
+  Kingfisher: a3c03d702433fa6cfedabb2bddbe076fb8f2e902
   NwadFramework: 1e77f1d318e6d2b2888fc30f82bb27803f043e75
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
@@ -68,6 +74,6 @@ SPEC CHECKSUMS:
   Trikot.streams: 4c3e75d175ee2c5c611cc941cfcdf3c8a34781a2
   Trikot.viewmodels.declarative: 61324e4b117eb020e4a849a64805178dd59df589
 
-PODFILE CHECKSUM: 4f28334ea16ec24761c5ed66298a205d3dad4f6d
+PODFILE CHECKSUM: ca4747c58e1c1cae44eac51d9bf320afdd9807cf
 
 COCOAPODS: 1.8.4

@@ -11,7 +11,6 @@
 		403F9B4A2253D46800239F8B /* image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 403F9B492253D46800239F8B /* image.xcassets */; };
 		40C6799D2304B3C5003BB391 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C6799C2304B3C5003BB391 /* HomeViewController.swift */; };
 		40C6799F2304B3CE003BB391 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C6799E2304B3CE003BB391 /* HomeView.swift */; };
-		40E6CB9D264D689600778EFD /* ObservableViewModelAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E6CB9C264D689600778EFD /* ObservableViewModelAdapter.swift */; };
 		747A5D43E1156B17536ADEF1 /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E065FF33AE03B70A503C771D /* Pods_iosApp.framework */; };
 		F861D7E1207FA40F0085E80D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F861D7E0207FA40F0085E80D /* AppDelegate.swift */; };
 		F861D7E6207FA40F0085E80D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F861D7E4207FA40F0085E80D /* Main.storyboard */; };
@@ -39,7 +38,6 @@
 		403F9B4F2253FCC200239F8B /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		40C6799C2304B3C5003BB391 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		40C6799E2304B3CE003BB391 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		40E6CB9C264D689600778EFD /* ObservableViewModelAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableViewModelAdapter.swift; sourceTree = "<group>"; };
 		92D573B2FF9E5BBCCE1B05AA /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
 		BC5554936FB07058A8C21237 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 		E065FF33AE03B70A503C771D /* Pods_iosApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,14 +79,6 @@
 			path = sample;
 			sourceTree = "<group>";
 		};
-		40E6CBA0264D6A4100778EFD /* MoveToTrikot */ = {
-			isa = PBXGroup;
-			children = (
-				40E6CB9C264D689600778EFD /* ObservableViewModelAdapter.swift */,
-			);
-			path = MoveToTrikot;
-			sourceTree = "<group>";
-		};
 		D6BF22EA22616B6A109BC76E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,7 +109,6 @@
 		F861D7DF207FA40F0085E80D /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
-				40E6CBA0264D6A4100778EFD /* MoveToTrikot */,
 				40C6799B2304B3B2003BB391 /* sample */,
 				1F52612822CF84FE000BB651 /* iosApp.entitlements */,
 				403F9B492253D46800239F8B /* image.xcassets */,
@@ -273,7 +262,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40E6CB9D264D689600778EFD /* ObservableViewModelAdapter.swift in Sources */,
 				40C6799F2304B3CE003BB391 /* HomeView.swift in Sources */,
 				F861D7E1207FA40F0085E80D /* AppDelegate.swift in Sources */,
 				403F9B4422539E0B00239F8B /* SharedBootstrap.swift in Sources */,
