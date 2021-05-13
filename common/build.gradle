@@ -47,6 +47,10 @@ kword {
     generatedDir 'src/commonMain/generated'
 }
 
+ktlint {
+    disabledRules = ["import-ordering"]
+}
+
 kotlin {
     android() {
         publishLibraryVariants('release', 'debug')

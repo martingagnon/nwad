@@ -98,6 +98,8 @@ dependencies {
 }
 
 ktlint {
+    disabledRules = ["import-ordering"]
+
     android = true
 }
 
