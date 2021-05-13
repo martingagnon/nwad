@@ -4,7 +4,9 @@ import com.mirego.trikot.kword.I18N
 import com.mirego.trikot.streams.reactive.RefreshablePublisher
 import com.mirego.nwad.viewmodels.home.HomeViewModel
 import com.mirego.trikot.foundation.FoundationConfiguration
+import com.mirego.trikot.foundation.timers.TimerFactory
 import com.mirego.trikot.streams.cancellable.CancellableManager
+import com.mirego.trikot.streams.reactive.Publishers
 import com.mirego.trikot.streams.reactive.TimerPublisher
 import com.mirego.trikot.streams.reactive.map
 import com.mirego.trikot.viewmodels.declarative.components.TextViewModel
@@ -14,8 +16,11 @@ import kotlin.time.Duration
 import kotlin.time.seconds
 
 class HomeViewModelImpl(cancellableManager: CancellableManager) : HomeViewModel, ViewModelImpl(cancellableManager) {
+    val publisher = Publishers.behaviorSubject(0)
+    val timer = FoundationConfiguration.timerFactory.repeatable(1.seconds) { publisher.value = publisher.value!! + 1 }
+
     override val labelViewModel = TextViewModelImpl(cancellableManager).apply {
-        bindText(TimerPublisher(1.seconds, FoundationConfiguration.timerFactory).map {
+        bindText(publisher.map {
             "Hello world! $it"
         })
     }
