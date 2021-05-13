@@ -3,13 +3,12 @@ plugins {
     id 'kotlin-multiplatform'
     id 'kotlinx-serialization'
     id 'org.jlleitschuh.gradle.ktlint'
-    id 'mirego.kword' version '0.5'
+    id 'mirego.kword' version '2.0.1'
     id 'jacoco'
 }
 
 repositories {
     google()
-    jcenter()
     mavenCentral()
     mavenLocal()
     maven { url "https://maven.pkg.jetbrains.space/kotlin/p/kotlin/kotlin-js-wrappers" }
@@ -31,6 +30,14 @@ android {
     testOptions {
         unitTests.returnDefaultValues = true
         unitTests.includeAndroidResources = true
+    }
+    configurations {
+        create("androidTestApi")
+        create("androidTestDebugApi")
+        create("androidTestReleaseApi")
+        create("testApi")
+        create("testDebugApi")
+        create("testReleaseApi")
     }
 }
 
@@ -169,7 +176,7 @@ task copyFramework() {
             include "${trikot_framework_name}.framework/**"
             include "${trikot_framework_name}.framework.dSYM/**"
         }
-        copy {
+            copy {
             from translationDir
             into frameworkDir
             include "**"

@@ -8,5 +8,5 @@ import com.mirego.nwad.viewmodels.home.HomeViewModelController
 class ViewModelControllerFactoryImpl(private val i18N: I18N) :
     ViewModelControllerFactory {
     override fun createHome(): HomeViewModelController =
-        HomeViewModelController(FetchQuoteUseCaseImpl(QuoteRepositoryImpl()), i18N)
+        HomeViewModelController()
 }
