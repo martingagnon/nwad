@@ -1,7 +1,6 @@
+import NwadFramework
 import Trikot_http
 import Trikot_kword
-import Trikot_viewmodels
-import NwadFramework
 import UIKit
 
 @UIApplicationMain
@@ -13,13 +12,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Environment().flavor = currentFlavor()
         HttpConfiguration().httpRequestFactory = TrikotHttpRequestFactory()
         HttpConfiguration().connectivityPublisher = TrikotConnectivityService.shared.publisher
-        ImageViewModelResourceManager.shared = SampleImageResourceProvider()
         TrikotKword.shared.setCurrentLanguage("en")
 
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
 
-        window.rootViewController = HomeViewController()
+        window.rootViewController = HomeViewController(viewModelController: HomeViewModelController())
 
         window.makeKeyAndVisible()
 

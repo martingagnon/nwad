@@ -1,37 +1,17 @@
 import NwadFramework
-import UIKit
+import SwiftUI
+import Trikot_viewmodels_declarative
 
-class HomeView: BaseViewModelView<HomeViewModel> {
-    private let label = UILabel()
-    private let button = UIButton()
+struct HomeView: RootViewModelView {
+    var viewModel: HomeViewModel
+    @ObservedObject var textVM: ObservableViewModelAdapter<TextViewModel>
 
-    override var viewViewModel: HomeViewModel? {
-        didSet {
-            label.labelViewModel = viewViewModel?.quoteLabel
-            button.buttonViewModel = viewViewModel?.refreshButton
-        }
+    init(viewModel: HomeViewModel) {
+        self.viewModel = viewModel
+        textVM = viewModel.labelViewModel.asObservable()
     }
 
-    required init(frame: CGRect) {
-        super.init(frame: frame)
-        label.font = UIFont.boldSystemFont(ofSize: 30)
-        label.textColor = .white
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(label)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(button)
-        button.backgroundColor = .gray
-        NSLayoutConstraint.activate(
-            [
-                label.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor),
-                label.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor),
-                label.centerXAnchor.constraint(equalTo: centerXAnchor),
-                label.centerYAnchor.constraint(equalTo: centerYAnchor),
-                button.centerXAnchor.constraint(equalTo: centerXAnchor),
-                button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50)
-            ]
-        )
+    var body: some View {
+        Text(textVM.viewModel.text)
     }
 }

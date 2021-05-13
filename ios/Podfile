@@ -1,6 +1,6 @@
 require_relative 'podspec_versions.rb'
 
-platformVersion = '11.3'
+platformVersion = '13.0'
 platform :ios, platformVersion
 
 install! 'cocoapods', :disable_input_output_paths => true
@@ -15,7 +15,7 @@ target 'iosApp' do
   pod 'SwiftLint'
   pod 'NwadFramework', :path => '../common'
   pod 'Trikot.http', :git => 'git@github.com:mirego/trikot.http.git', :tag => properties['trikot_http_version'], :inhibit_warnings => true
-  pod 'Trikot.viewmodels', :git => 'git@github.com:mirego/trikot.viewmodels.git', :tag => properties['trikot_viewmodels_version'], :inhibit_warnings => true
+  pod 'Trikot.viewmodels.declarative', :git => 'git@github.com:mirego/trikot.viewmodels.declarative.git', :commit => "b2916c2a7fbb394b2af194d29f1d5ca4eef209d6", :inhibit_warnings => true
   pod 'Trikot.streams', :git => 'git@github.com:mirego/trikot.streams.git', :tag => properties['trikot_streams_version'], :inhibit_warnings => true
   pod 'Trikot.kword', :git => 'git@github.com:mirego/trikot.kword.git', :tag => properties['trikot_kword_version'], :inhibit_warnings => true
 

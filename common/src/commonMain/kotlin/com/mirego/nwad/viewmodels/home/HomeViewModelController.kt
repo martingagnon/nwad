@@ -9,5 +9,5 @@ import com.mirego.trikot.viewmodels.declarative.controller.ViewModelController
 
 class HomeViewModelController(
 ) : ViewModelController<HomeViewModel, NavigationDelegate>() {
-    override val viewModel: HomeViewModel = HomeViewModelImpl()
+    override val viewModel: HomeViewModel = HomeViewModelImpl(cancellableManager)
 }
