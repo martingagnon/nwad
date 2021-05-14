@@ -28,10 +28,6 @@ fun main() {
     }
 }
 
-external interface MomentsListComponentProp: RProps {
-    var moments: ListViewModel<MomentViewModel>
-}
-
 inline fun <T: ViewModel> useViewModelState(viewModel: T): T {
     val (delegate, setDelegate) = useState(Pair(viewModel, 0))
     val cancellableManager = CancellableManager()
@@ -45,8 +41,12 @@ inline fun <T: ViewModel> useViewModelState(viewModel: T): T {
     return delegate.first
 }
 
-val momentListComponent = functionalComponent<MomentsListComponentProp> { props ->
-    val moments = useViewModelState(props.moments)
+external interface ViewModelComponentProp<T: ViewModel>: RProps {
+    var viewModel: T
+}
+
+val momentListComponent = functionalComponent<ViewModelComponentProp<ListViewModel<MomentViewModel>>> { props ->
+    val moments = useViewModelState(props.viewModel)
 
     for (moment in moments.elements) {
         br {  }
@@ -56,12 +56,16 @@ val momentListComponent = functionalComponent<MomentsListComponentProp> { props 
     }
 }
 
+val labelComponent = functionalComponent<ViewModelComponentProp<TextViewModel>> { props ->
+    val label = useViewModelState(props.viewModel)
+    +label.text
+}
+
 class App : RComponent<RProps, RState>() {
     val homeViewModel = Bootstrap.shared.viewModelFactory.homeViewModel(CancellableManager())
 
     override fun RBuilder.render() {
-        +"Allo ${homeViewModel.labelViewModel.text}"
-
-        child(momentListComponent) { attrs.moments = homeViewModel.moments }
+        child(labelComponent) { attrs.viewModel = homeViewModel.labelViewModel }
+        child(momentListComponent) { attrs.viewModel = homeViewModel.moments }
     }
 }
