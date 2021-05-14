@@ -7,6 +7,10 @@ import react.RProps
 import react.useEffectWithCleanup
 import react.useState
 
+inline fun <T: ViewModel> useViewModelState(props: ViewModelComponentProp<T>): T {
+    return useViewModelState(props.viewModel)
+}
+
 inline fun <T: ViewModel> useViewModelState(viewModel: T): T {
     val (delegate, setDelegate) = useState(Pair(viewModel, 0))
     val cancellableManager = CancellableManager()

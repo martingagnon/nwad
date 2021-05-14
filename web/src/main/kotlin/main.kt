@@ -30,7 +30,7 @@ fun main() {
 }
 
 val momentListComponent = functionalComponent<ViewModelComponentProp<ListViewModel<MomentViewModel>>> { props ->
-    val moments = useViewModelState(props.viewModel)
+    val moments = useViewModelState(props)
 
     for (moment in moments.elements) {
         br {  }
@@ -41,7 +41,7 @@ val momentListComponent = functionalComponent<ViewModelComponentProp<ListViewMod
 }
 
 val labelComponent = functionalComponent<ViewModelComponentProp<TextViewModel>> { props ->
-    val label = useViewModelState(props.viewModel)
+    val label = useViewModelState(props)
     +label.text
 }
 
