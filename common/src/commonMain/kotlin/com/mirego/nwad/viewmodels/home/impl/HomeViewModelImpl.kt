@@ -24,14 +24,15 @@ class HomeViewModelImpl(cancellableManager: CancellableManager) : HomeViewModel,
     val publisher = Publishers.behaviorSubject(0)
 
     override val labelViewModel = TextViewModelImpl(cancellableManager).apply {
+        text = "initial"
         bindText(publisher.map {
             "Hello world! $it"
         })
     }
 
-    override val moments = ListViewModelImpl<MomentViewModel>(cancellableManager).apply {
-        bindElements(FetchMomentsUseCaseImpl(MomentsRepositoryImpl()).fetchMoments().map { moments -> moments.map { MomentViewModelImpl(cancellableManager, it) } } )
-    }
+//    override val moments = ListViewModelImpl<MomentViewModel>(cancellableManager).apply {
+//        bindElements(FetchMomentsUseCaseImpl(MomentsRepositoryImpl()).fetchMoments().map { moments -> moments.map { MomentViewModelImpl(cancellableManager, it) } } )
+//    }
 
     init {
         FoundationConfiguration.timerFactory.repeatable(1.seconds) { publisher.value = publisher.value!! + 1 }.also {

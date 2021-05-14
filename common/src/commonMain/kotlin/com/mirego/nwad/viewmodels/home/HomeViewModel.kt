@@ -6,5 +6,5 @@ import com.mirego.trikot.viewmodels.declarative.components.TextViewModel
 
 interface HomeViewModel : ViewModel {
     val labelViewModel: TextViewModel
-    val moments: ListViewModel<MomentViewModel>
+//    val moments: ListViewModel<MomentViewModel>
 }

@@ -1,3 +1,5 @@
+import com.mirego.nwad.factories.Bootstrap
+import com.mirego.trikot.streams.cancellable.CancellableManager
 import kotlinx.browser.document
 import react.dom.div
 import react.dom.render
@@ -8,7 +10,7 @@ fun main() {
 
     render(document.getElementById("root")) {
         div {
-            +"Allo"
+            +"Allo${Bootstrap.shared.viewModelFactory.homeViewModel(CancellableManager()).labelViewModel.text}"
         }
     }
 }
