@@ -9,12 +9,13 @@ import com.mirego.trikot.viewmodels.declarative.components.ListViewModel
 import com.mirego.trikot.viewmodels.declarative.components.TextViewModel
 import com.mirego.trikot.viewmodels.declarative.properties.ImageDescriptor
 import kotlinx.browser.document
+import movetotrikot.ViewModelComponentProp
+import movetotrikot.useViewModelState
 import react.*
 import react.dom.br
 import react.dom.div
 import react.dom.img
 import react.dom.render
-import kotlin.reflect.KMutableProperty1
 
 @ExperimentalJsExport
 fun main() {
@@ -26,23 +27,6 @@ fun main() {
             child(App::class) {}
         }
     }
-}
-
-inline fun <T: ViewModel> useViewModelState(viewModel: T): T {
-    val (delegate, setDelegate) = useState(Pair(viewModel, 0))
-    val cancellableManager = CancellableManager()
-    useEffectWithCleanup {
-        viewModel.propertyDidChange.subscribe(cancellableManager) {
-            setDelegate(Pair(viewModel, delegate.second + 1))
-        }
-
-        return@useEffectWithCleanup { cancellableManager.cancel() }
-    }
-    return delegate.first
-}
-
-external interface ViewModelComponentProp<T: ViewModel>: RProps {
-    var viewModel: T
 }
 
 val momentListComponent = functionalComponent<ViewModelComponentProp<ListViewModel<MomentViewModel>>> { props ->
