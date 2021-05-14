@@ -11,12 +11,11 @@ inline fun <T: ViewModel> useViewModelState(props: ViewModelComponentProp<T>): T
 
 inline fun <T: ViewModel> useViewModelState(viewModel: T): T {
     val (delegate, setDelegate) = useState(Pair(viewModel, 0))
-    val cancellableManager = CancellableManager()
     useEffectWithCleanup {
+        val cancellableManager = CancellableManager()
         viewModel.propertyDidChange.subscribe(cancellableManager) {
             setDelegate(Pair(viewModel, delegate.second + 1))
         }
-
         return@useEffectWithCleanup { cancellableManager.cancel() }
     }
     return delegate.first
