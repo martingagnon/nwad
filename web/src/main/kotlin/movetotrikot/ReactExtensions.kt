@@ -3,9 +3,7 @@ package movetotrikot
 import com.mirego.trikot.streams.cancellable.CancellableManager
 import com.mirego.trikot.streams.reactive.subscribe
 import com.mirego.trikot.viewmodels.declarative.ViewModel
-import react.RProps
-import react.useEffectWithCleanup
-import react.useState
+import react.*
 
 inline fun <T: ViewModel> useViewModelState(props: ViewModelComponentProp<T>): T {
     return useViewModelState(props.viewModel)
@@ -22,6 +20,15 @@ inline fun <T: ViewModel> useViewModelState(viewModel: T): T {
         return@useEffectWithCleanup { cancellableManager.cancel() }
     }
     return delegate.first
+}
+
+fun <T: ViewModel> viewModelComponent(
+    func: RBuilder.(viewModel: T) -> Unit
+): FunctionalComponent<ViewModelComponentProp<T>> {
+    return functionalComponent<ViewModelComponentProp<T>> { props ->
+        val viewModel = useViewModelState(props.viewModel)
+        func(viewModel)
+    }
 }
 
 external interface ViewModelComponentProp<T: ViewModel>: RProps {

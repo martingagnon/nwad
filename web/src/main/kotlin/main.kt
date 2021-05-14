@@ -11,6 +11,7 @@ import com.mirego.trikot.viewmodels.declarative.properties.ImageDescriptor
 import kotlinx.browser.document
 import movetotrikot.ViewModelComponentProp
 import movetotrikot.useViewModelState
+import movetotrikot.viewModelComponent
 import react.*
 import react.dom.br
 import react.dom.div
@@ -29,9 +30,7 @@ fun main() {
     }
 }
 
-val momentListComponent = functionalComponent<ViewModelComponentProp<ListViewModel<MomentViewModel>>> { props ->
-    val moments = useViewModelState(props)
-
+val momentListComponent = viewModelComponent<ListViewModel<MomentViewModel>> { moments ->
     for (moment in moments.elements) {
         br {  }
         img(src=(moment.image.image as ImageDescriptor.Remote).url){}
@@ -40,9 +39,8 @@ val momentListComponent = functionalComponent<ViewModelComponentProp<ListViewMod
     }
 }
 
-val labelComponent = functionalComponent<ViewModelComponentProp<TextViewModel>> { props ->
-    val label = useViewModelState(props)
-    +label.text
+val labelComponent = viewModelComponent<TextViewModel> { textViewModel ->
+    +textViewModel.text
 }
 
 class App : RComponent<RProps, RState>() {
