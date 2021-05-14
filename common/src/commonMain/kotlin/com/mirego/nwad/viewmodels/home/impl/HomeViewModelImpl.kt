@@ -30,9 +30,9 @@ class HomeViewModelImpl(cancellableManager: CancellableManager) : HomeViewModel,
         })
     }
 
-//    override val moments = ListViewModelImpl<MomentViewModel>(cancellableManager).apply {
-//        bindElements(FetchMomentsUseCaseImpl(MomentsRepositoryImpl()).fetchMoments().map { moments -> moments.map { MomentViewModelImpl(cancellableManager, it) } } )
-//    }
+    override val moments = ListViewModelImpl<MomentViewModel>(cancellableManager).apply {
+        bindElements(FetchMomentsUseCaseImpl(MomentsRepositoryImpl()).fetchMoments().map { moments -> moments.map { MomentViewModelImpl(cancellableManager, it) } } )
+    }
 
     init {
         FoundationConfiguration.timerFactory.repeatable(1.seconds) { publisher.value = publisher.value!! + 1 }.also {
