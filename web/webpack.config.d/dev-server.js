@@ -1,5 +1,5 @@
 config.devServer = config.devServer || {};
-config.devServer.port = process.env.CANONICAL_PORT || 8080;
+config.devServer.port = process.env.CANONICAL_PORT || 3000;
 
 // Prevent dev-server to automatically open the browser after server has been started
 // See https://webpack.js.org/configuration/dev-server/#devserveropen
