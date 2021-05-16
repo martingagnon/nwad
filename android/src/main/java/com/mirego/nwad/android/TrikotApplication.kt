@@ -20,7 +20,7 @@ class TrikotApplication : Application(), ViewModelControllerFactoryProvidingAppl
     override val viewModelControllerFactory: ViewModelControllerFactory
         get() = object : ViewModelControllerFactory {
             fun homeViewModelController(): HomeViewModelController {
-                return HomeViewModelController(Bootstrap.shared.viewModelFactory)
+                return HomeViewModelController(Bootstrap.viewModelFactory)
             }
         }
 }
