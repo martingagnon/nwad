@@ -10,6 +10,5 @@ class FetchMomentsUseCaseImpl(private val momentsRepo: MomentsRepository) :
     FetchMomentsUseCase {
     override fun fetchMoments(): Publisher<List<Moment>> {
         return momentsRepo.getMoments().shared()
-
     }
 }

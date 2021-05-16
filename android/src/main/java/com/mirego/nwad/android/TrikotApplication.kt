@@ -3,7 +3,7 @@ package com.mirego.nwad.android
 import android.app.Application
 import com.mirego.nwad.BuildConfig
 import com.mirego.nwad.Environment
-import com.mirego.nwad.viewmodels.home.HomeViewModel
+import com.mirego.nwad.factories.Bootstrap
 import com.mirego.nwad.viewmodels.home.HomeViewModelController
 import com.mirego.trikot.http.HttpConfiguration
 import com.mirego.trikot.http.android.requestFactory.KtorHttpRequestFactory
@@ -18,9 +18,9 @@ class TrikotApplication : Application(), ViewModelControllerFactoryProvidingAppl
     }
 
     override val viewModelControllerFactory: ViewModelControllerFactory
-        get() = object: ViewModelControllerFactory {
+        get() = object : ViewModelControllerFactory {
             fun homeViewModelController(): HomeViewModelController {
-                return HomeViewModelController()
+                return HomeViewModelController(Bootstrap.shared.viewModelFactory)
             }
         }
 }
