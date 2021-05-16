@@ -8,7 +8,5 @@ data class Moment(
     val media: Media,
     val created_at: String,
     val comments_count: Int,
-    val description: String,
-
-
+    val description: String
 )

@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - master
+
   # Trigger the workflow on any pull requests
   pull_request:
     branches:
@@ -12,8 +13,7 @@ on:
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - uses: actions/checkout@v2
@@ -21,22 +21,27 @@ jobs:
           fetch-depth: 0
 
       - name: Gradle cache
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-      - name: Set up JDK 1.8
+
+      - name: Set up JDK 11
         uses: actions/setup-java@v1
         with:
-          java-version: 1.8
+          distribution: 'adopt'
+          java-version: '11'
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+      - name: run common check
+        run: ./gradlew :common:check
 
-      #Remove comments here to enable coveralls!
-      - name: Build with Gradle
-        #env:
-          #COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
-        run: ./gradlew :common:check :common:jacocoTestReport #:common:coverallsJacoco
+      - name: run android check
+        run: ./gradlew :android:check
+
+      - name: run web check
+        run: ./gradlew :web:check
+
+      - name: generate code coverage report
+        run: ./gradlew :common:jacocoTestReport

@@ -8,7 +8,10 @@ import com.mirego.trikot.viewmodels.declarative.components.impl.TextViewModelImp
 import com.mirego.trikot.viewmodels.declarative.impl.ViewModelImpl
 import com.mirego.trikot.viewmodels.declarative.properties.ImageDescriptor
 
-class MomentViewModelImpl(cancellableManager: CancellableManager, moment: Moment): MomentViewModel, ViewModelImpl(cancellableManager) {
+class MomentViewModelImpl(
+    cancellableManager: CancellableManager,
+    moment: Moment
+) : MomentViewModel, ViewModelImpl(cancellableManager) {
     override val title = TextViewModelImpl(cancellableManager).apply {
         text = moment.description
     }

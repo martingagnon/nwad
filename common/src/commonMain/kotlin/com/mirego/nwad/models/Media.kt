@@ -7,4 +7,5 @@ data class Media(
     val xlarge: String,
     val large: String,
     val thumb: String,
-    val teaser: String)
+    val teaser: String
+)
