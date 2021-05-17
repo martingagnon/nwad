@@ -1,0 +1,7 @@
+{
+  "name": "nwad",
+  "devDependencies": {
+    "tailwindcss": "2.1.2",
+    "autoprefixer": "10.2.5"
+  }
+}

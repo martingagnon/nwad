@@ -15,7 +15,7 @@ val App = functionalComponent<RProps> {
     Fragment {
         child(NavBar)
 
-        div(classes = "container-fluid mt-4") {
+        div(classes = "container mx-auto px-4") {
             child(labelComponent) {
                 attrs.viewModel = homeViewModel.labelViewModel
             }
