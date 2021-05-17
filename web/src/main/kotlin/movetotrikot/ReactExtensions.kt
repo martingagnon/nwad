@@ -5,11 +5,11 @@ import com.mirego.trikot.streams.reactive.subscribe
 import com.mirego.trikot.viewmodels.declarative.ViewModel
 import react.*
 
-inline fun <T: ViewModel> useViewModelState(props: ViewModelComponentProp<T>): T {
+fun <T: ViewModel> useViewModelState(props: ViewModelComponentProp<T>): T {
     return useViewModelState(props.viewModel)
 }
 
-inline fun <T: ViewModel> useViewModelState(viewModel: T): T {
+fun <T: ViewModel> useViewModelState(viewModel: T): T {
     val (delegate, setDelegate) = useState(Pair(viewModel, 0))
     useEffectWithCleanup {
         val cancellableManager = CancellableManager()

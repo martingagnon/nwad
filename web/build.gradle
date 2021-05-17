@@ -1,3 +1,5 @@
+import com.github.gradle.node.npm.task.NpxTask
+
 buildscript {
     repositories {
         google()
@@ -10,13 +12,14 @@ buildscript {
         classpath 'com.android.tools.build:gradle:7.0.0-alpha15'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
-        classpath 'com.google.gms:google-services:4.3.4'
+        classpath 'com.google.gms:google-services:4.3.5'
         classpath 'org.jlleitschuh.gradle:ktlint-gradle:10.0.0'
     }
 }
 
 plugins {
     id 'org.jetbrains.kotlin.js'
+    id 'com.github.node-gradle.node' version '3.1.0'
 }
 
 repositories {
@@ -40,9 +43,12 @@ dependencies {
     implementation("org.jetbrains:kotlin-react-router-dom:5.2.0-pre.154-kotlin-1.5.0")
     implementation("org.jetbrains:kotlin-styled:5.2.3-pre.154-kotlin-1.5.0")
 
-    implementation(npm("bootstrap", "5.0.0-beta2"))
     implementation(npm("exports-loader", "1.1.1"))
     implementation(npm("raw-loader", "4.0.2"))
+    implementation(npm("postcss", "8.2.15"))
+    implementation(npm("postcss-loader", "4.2.0"))
+    implementation(npm("autoprefixer", "10.2.5"))
+    implementation(npm("tailwindcss", "2.1.2"))
 }
 
 kotlin {
@@ -61,4 +67,27 @@ kotlin {
 
         binaries.executable()
     }
+}
+
+tasks.register("buildTailwindCss", NpxTask) {
+    // Output CSS location
+    def generatedFile = "build/processedResources/js/main/css/tailwind.css"
+
+    // Location of the tailwind config file
+    def tailwindConfig = "src/main/resources/css/tailwind-config.css"
+
+    it.command.set("tailwind")
+    args.set(["build", tailwindConfig, "-o", generatedFile])
+
+    dependsOn(tasks.npmInstall)
+
+    // The location of the source files which Tailwind scans when running `purgecss`
+    it.inputs.dir("src/main/kotlin")
+
+    it.inputs.file(tailwindConfig)
+    it.outputs.file(generatedFile)
+}
+
+processResources {
+    dependsOn("buildTailwindCss")
 }
