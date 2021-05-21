@@ -3,7 +3,6 @@ import com.mirego.trikot.http.web.WebHttpRequestFactory
 import components.App
 import kotlinext.js.require
 import kotlinx.browser.document
-import react.dom.div
 import react.dom.render
 import react.child
 
@@ -17,9 +16,7 @@ fun main() {
     setupLocalization()
 
     render(document.getElementById("root")) {
-        div {
-            child(App) {}
-        }
+        child(App)
     }
 }
 
