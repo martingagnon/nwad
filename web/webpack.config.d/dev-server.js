@@ -9,6 +9,10 @@ config.devServer.open = false;
 // See https://webpack.js.org/configuration/dev-server/#devserverdisablehostcheck
 config.devServer.disableHostCheck = true;
 
+// Use HTML5 History API instead of serving 404 for known routes
+// See https://webpack.js.org/configuration/dev-server/#devserverhistoryapifallback
+config.devServer.historyApiFallback = true;
+
 // Required for Live Reloading to work when navigating in SSL/TLS
 // See https://webpack.js.org/configuration/dev-server/#devserversockhost
 if (process.env.USE_SSL == 'true') {
