@@ -14,8 +14,13 @@ struct HomeView: RootViewModelView {
         moments = viewModel.moments.asObservable()
     }
 
+    // swiftlint:disable all
     var body: some View {
         ScrollView {
+            Button(action: { (UIApplication.shared.delegate as! AppDelegate).doSignIn() }) {
+                Text("Log in")
+            }
+            .background(Color.blue)
             Text(textVM.viewModel.text)
             ForEach(moments.viewModel.elements, id: \.identifier) { moment in
                 KFImage(URL(string: (moment.image.image as! ImageDescriptor.Remote).url))

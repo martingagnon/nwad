@@ -1,4 +1,17 @@
 PODS:
+  - AppAuth (1.4.0):
+    - AppAuth/Core (= 1.4.0)
+    - AppAuth/ExternalUserAgent (= 1.4.0)
+  - AppAuth/Core (1.4.0)
+  - AppAuth/ExternalUserAgent (1.4.0)
+  - GoogleSignIn (5.0.2):
+    - AppAuth (~> 1.2)
+    - GTMAppAuth (~> 1.0)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - GTMAppAuth (1.2.2):
+    - AppAuth/Core (~> 1.4)
+    - GTMSessionFetcher/Core (~> 1.5)
+  - GTMSessionFetcher/Core (1.5.0)
   - Kingfisher/Core (5.15.8)
   - Kingfisher/SwiftUI (5.15.8):
     - Kingfisher/Core
@@ -20,6 +33,7 @@ PODS:
     - Trikot.streams
 
 DEPENDENCIES:
+  - GoogleSignIn
   - Kingfisher/SwiftUI (~> 5.0)
   - NwadFramework (from `../common`)
   - SwiftLint
@@ -30,6 +44,10 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - AppAuth
+    - GoogleSignIn
+    - GTMAppAuth
+    - GTMSessionFetcher
     - Kingfisher
     - ReachabilitySwift
     - SwiftLint
@@ -65,6 +83,10 @@ CHECKOUT OPTIONS:
     :git: "git@github.com:mirego/trikot.viewmodels.declarative.git"
 
 SPEC CHECKSUMS:
+  AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
+  GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
+  GTMAppAuth: ad5c2b70b9a8689e1a04033c9369c4915bfcbe89
+  GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   Kingfisher: a3c03d702433fa6cfedabb2bddbe076fb8f2e902
   NwadFramework: 1e77f1d318e6d2b2888fc30f82bb27803f043e75
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
@@ -74,6 +96,6 @@ SPEC CHECKSUMS:
   Trikot.streams: 4c3e75d175ee2c5c611cc941cfcdf3c8a34781a2
   Trikot.viewmodels.declarative: 61324e4b117eb020e4a849a64805178dd59df589
 
-PODFILE CHECKSUM: ca4747c58e1c1cae44eac51d9bf320afdd9807cf
+PODFILE CHECKSUM: 417f4ffb299f58b03fc1fe3bd06d16fdbbe7727f
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.10.1

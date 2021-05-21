@@ -1,3 +1,4 @@
+import GoogleSignIn
 import NwadFramework
 import Trikot_http
 import Trikot_kword
@@ -17,7 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
 
-        window.rootViewController = HomeViewController(viewModelController: HomeViewModelController())
+        GIDSignIn.sharedInstance().clientID = "768209214998-d30s4gfilfflt4erkaok8hpdl05chn4u.apps.googleusercontent.com"
+        GIDSignIn.sharedInstance().delegate = self
+
+        window.rootViewController = HomeViewController(viewModelController: Bootstrap().viewModelControllerFactory.createHome())
 
         window.makeKeyAndVisible()
 
@@ -45,6 +49,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         case "qa": return .qa
         case "staging": return .staging
         default: return Environment.Flavor.release_
+        }
+    }
+
+    func doSignIn() {
+        guard let window = window else { return }
+        GIDSignIn.sharedInstance().presentingViewController = window.rootViewController
+        GIDSignIn.sharedInstance().signIn()
+    }
+}
+
+extension AppDelegate: GIDSignInDelegate {
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+
+        if error == nil {
+            Bootstrap().viewModelFactory.loginViewModel().login(token: user.authentication.idToken)
+                .onSuccess { _ in
+                    print("Logged")
+                }
+                .onError { _ in
+                    print("Could not log in")
+                }
+        } else {
+            print("Error Google sign in")
         }
     }
 }
