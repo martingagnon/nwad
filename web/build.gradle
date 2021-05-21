@@ -45,10 +45,12 @@ dependencies {
 
     implementation(npm("exports-loader", "1.1.1"))
     implementation(npm("raw-loader", "4.0.2"))
+    implementation(npm("file-loader", "6.2.0"))
     implementation(npm("postcss", "8.2.15"))
     implementation(npm("postcss-loader", "4.2.0"))
     implementation(npm("autoprefixer", "10.2.5"))
     implementation(npm("tailwindcss", "2.1.2"))
+    implementation(npm("@svgr/webpack", "5.5.0"))
 }
 
 kotlin {

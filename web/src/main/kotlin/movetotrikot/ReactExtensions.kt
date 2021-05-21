@@ -3,7 +3,12 @@ package movetotrikot
 import com.mirego.trikot.streams.cancellable.CancellableManager
 import com.mirego.trikot.streams.reactive.subscribe
 import com.mirego.trikot.viewmodels.declarative.ViewModel
-import react.*
+import react.FunctionalComponent
+import react.RBuilder
+import react.RProps
+import react.functionalComponent
+import react.useEffectWithCleanup
+import react.useState
 
 fun <T: ViewModel> useViewModelState(props: ViewModelComponentProp<T>): T {
     return useViewModelState(props.viewModel)

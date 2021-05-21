@@ -7,9 +7,6 @@ import react.RProps
 import react.child
 import react.dom.div
 import react.functionalComponent
-import react.router.dom.hashRouter
-import react.router.dom.route
-import react.router.dom.switch
 
 @ExperimentalJsExport
 val Home = functionalComponent<RProps> {
