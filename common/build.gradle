@@ -106,7 +106,8 @@ kotlin {
                 api "com.mirego.trikot:viewmodels-declarative:$trikot_viewmodels_declarative_version"
                 api "com.mirego.trikot:http:$trikot_http_version"
                 api "com.mirego.trikot:kword:$trikot_kword_version"
-                implementation "com.mirego.trikot:graphql:$trikot_graphql_version"
+                api "com.mirego.trikot:graphql:$trikot_graphql_version"
+                api "com.mirego.trikot:datasources:$trikot_datasources_version"
                 implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$serialization_version"
             }
             kotlin.srcDir(kword.generatedDir)
