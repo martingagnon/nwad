@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
 
-        GIDSignIn.sharedInstance().clientID = "768209214998-d30s4gfilfflt4erkaok8hpdl05chn4u.apps.googleusercontent.com"
+        GIDSignIn.sharedInstance().clientID = "768209214998-7vr8qf72gg9g8ibvrfr5tb37cs5i1j5p.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().delegate = self
 
         window.rootViewController = HomeViewController(viewModelController: Bootstrap().viewModelControllerFactory.createHome())

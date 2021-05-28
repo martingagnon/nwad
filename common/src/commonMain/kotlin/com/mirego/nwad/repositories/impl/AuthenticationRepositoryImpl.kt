@@ -1,8 +1,8 @@
 package com.mirego.nwad.repositories.impl
 
 import com.mirego.nwad.repositories.AuthenticationRepository
-import com.mirego.nwad.repositories.graphql.models.AuthenticateProviderUserMutation
-import com.mirego.nwad.repositories.graphql.models.AuthenticateProviderUserResult
+import com.mirego.nwad.repositories.graphql.mutations.AuthenticateProviderUserMutation
+import com.mirego.nwad.repositories.graphql.mutations.AuthenticateProviderUserResult
 import com.mirego.trikot.graphql.GraphqlPublisherFactory
 import com.mirego.trikot.streams.reactive.map
 import com.mirego.trikot.streams.reactive.promise.Promise

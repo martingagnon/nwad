@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		403F9B4422539E0B00239F8B /* SharedBootstrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403F9B4322539E0B00239F8B /* SharedBootstrap.swift */; };
 		403F9B4A2253D46800239F8B /* image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 403F9B492253D46800239F8B /* image.xcassets */; };
+		408EC56426606B63008CB747 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408EC56326606B63008CB747 /* ImagePicker.swift */; };
 		40C6799D2304B3C5003BB391 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C6799C2304B3C5003BB391 /* HomeViewController.swift */; };
 		40C6799F2304B3CE003BB391 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C6799E2304B3CE003BB391 /* HomeView.swift */; };
 		747A5D43E1156B17536ADEF1 /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E065FF33AE03B70A503C771D /* Pods_iosApp.framework */; };
@@ -36,6 +37,7 @@
 		403F9B492253D46800239F8B /* image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = image.xcassets; sourceTree = "<group>"; };
 		403F9B4D2253FC1500239F8B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		403F9B4F2253FCC200239F8B /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		408EC56326606B63008CB747 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		40C6799C2304B3C5003BB391 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		40C6799E2304B3CE003BB391 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		92D573B2FF9E5BBCCE1B05AA /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -68,6 +70,22 @@
 				E065FF33AE03B70A503C771D /* Pods_iosApp.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		408EC56126606B4C008CB747 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				408EC56226606B51008CB747 /* Components */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		408EC56226606B51008CB747 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				408EC56326606B63008CB747 /* ImagePicker.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		40C6799B2304B3B2003BB391 /* sample */ = {
@@ -109,6 +127,7 @@
 		F861D7DF207FA40F0085E80D /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				408EC56126606B4C008CB747 /* UI */,
 				40C6799B2304B3B2003BB391 /* sample */,
 				1F52612822CF84FE000BB651 /* iosApp.entitlements */,
 				403F9B492253D46800239F8B /* image.xcassets */,
@@ -280,6 +299,7 @@
 			files = (
 				40C6799F2304B3CE003BB391 /* HomeView.swift in Sources */,
 				F861D7E1207FA40F0085E80D /* AppDelegate.swift in Sources */,
+				408EC56426606B63008CB747 /* ImagePicker.swift in Sources */,
 				403F9B4422539E0B00239F8B /* SharedBootstrap.swift in Sources */,
 				40C6799D2304B3C5003BB391 /* HomeViewController.swift in Sources */,
 			);
