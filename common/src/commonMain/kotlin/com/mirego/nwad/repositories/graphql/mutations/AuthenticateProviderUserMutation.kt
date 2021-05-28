@@ -1,8 +1,11 @@
-package com.mirego.nwad.repositories.graphql.models
+package com.mirego.nwad.repositories.graphql.mutations
 
 import com.mirego.nwad.models.graphql.AccountsOrganization
 import com.mirego.nwad.models.graphql.AccountsUser
 import com.mirego.nwad.models.graphql.AuthenticateToken
+import com.mirego.nwad.repositories.PlatformEnvironment
+import com.mirego.nwad.repositories.graphql.models.DataResponse
+import com.mirego.nwad.repositories.graphql.models.MutationResponse
 import com.mirego.trikot.graphql.AbstractGraphqlQuery
 import kotlinx.serialization.Serializable
 
@@ -19,7 +22,7 @@ class AuthenticateProviderUserMutation(private val token: String) :
         DataResponse.serializer(MutationResponse.serializer(AuthenticateProviderUserResult.serializer()))
     ) {
     override val variables: Map<String, Any> = mapOf(
-        "provider" to "GOOGLE",
+        "provider" to PlatformEnvironment.accountProvider,
         "token" to token
     )
 
@@ -45,7 +48,6 @@ mutation(${'$'}token: String!, ${'$'}provider: AccountsProvider!) {
       }
       user {
         id
-        picture
         name
       }
     }  
