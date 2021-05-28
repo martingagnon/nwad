@@ -9,4 +9,8 @@ data class AccountsUser(val id: String, val name: String)
 data class AccountsOrganization(val name: String)
 
 @Serializable
-data class AuthenticateToken(val token: String)
+data class AuthenticateToken(val token: String) {
+    companion object {
+        val NO_TOKEN = AuthenticateToken("")
+    }
+}

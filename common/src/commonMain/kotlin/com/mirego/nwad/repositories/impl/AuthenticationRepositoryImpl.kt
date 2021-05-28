@@ -13,7 +13,7 @@ class AuthenticationRepositoryImpl(private val graphqlPublisherFactory: GraphqlP
         val query = graphqlPublisherFactory
             .create(AuthenticateProviderUserMutation(token))
         query.execute()
-        return Promise.from(query.map { it.data.result })
+        return Promise.from(query.map { it.data.authenticateProviderUser.result })
             .onSuccessReturn {
                 it?.let { Promise.resolve(it) } ?: Promise.reject(IllegalStateException("No user returned"))
             }

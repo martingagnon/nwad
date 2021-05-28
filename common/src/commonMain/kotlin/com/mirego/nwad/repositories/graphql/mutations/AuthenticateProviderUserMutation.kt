@@ -17,9 +17,14 @@ data class AuthenticateProviderUserResult(
     val user: AccountsUser
 )
 
+@Serializable
+data class AuthenticateProviderUserMutationResponse(
+    val authenticateProviderUser: MutationResponse<AuthenticateProviderUserResult>
+)
+
 class AuthenticateProviderUserMutation(private val token: String) :
-    AbstractGraphqlQuery<DataResponse<MutationResponse<AuthenticateProviderUserResult>>>(
-        DataResponse.serializer(MutationResponse.serializer(AuthenticateProviderUserResult.serializer()))
+    AbstractGraphqlQuery<DataResponse<AuthenticateProviderUserMutationResponse>>(
+        DataResponse.serializer(AuthenticateProviderUserMutationResponse.serializer())
     ) {
     override val variables: Map<String, Any> = mapOf(
         "provider" to PlatformEnvironment.accountProvider,

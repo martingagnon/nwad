@@ -1,3 +1,4 @@
 {
-    "refresh_button": "Gimme another"
+    "home_login_button": "Login with google",
+    "home_logout_button": "Logout"
 }
