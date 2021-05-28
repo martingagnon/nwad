@@ -8,7 +8,8 @@ import com.mirego.trikot.streams.reactive.promise.Promise
 
 class LoginWithTokenUseCaseImpl(
     private val authenticationRepository: AuthenticationRepository,
-    private val tokenRepository: TokenRepository) : LoginWithTokenUseCase {
+    private val tokenRepository: TokenRepository
+) : LoginWithTokenUseCase {
     override fun login(token: String): Promise<AccountsUser> {
         return authenticationRepository.authenticateWithToken(token)
             .onSuccessReturn {

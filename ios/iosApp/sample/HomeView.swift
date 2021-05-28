@@ -17,14 +17,56 @@ struct HomeView: RootViewModelView {
     // swiftlint:disable all
     var body: some View {
         ScrollView {
-            Button(action: { (UIApplication.shared.delegate as! AppDelegate).doSignIn() }) {
-                Text("Log in")
-            }
-            .background(Color.blue)
+            LoginButton(viewModel.loginButton)
+            LogoutButton(viewModel.logoutButton)
             Text(textVM.viewModel.text)
             ForEach(moments.viewModel.elements, id: \.identifier) { moment in
                 KFImage(URL(string: (moment.image.image as! ImageDescriptor.Remote).url))
                 Text(moment.title.text)
+            }
+        }
+    }
+
+    struct LoginButton: ViewModelView {
+        var viewModel: ButtonViewModel<TextViewModelContent>
+        @ObservedObject var ovm: ObservableViewModelAdapter<ButtonViewModel<TextViewModelContent>>
+
+        init(_ viewModel: ButtonViewModel<TextViewModelContent>) {
+            self.viewModel = viewModel
+            self.ovm = viewModel.asObservable()
+        }
+
+        var body: some View {
+            if viewModel.hidden {
+                EmptyView()
+            } else {
+                Button(action: { (UIApplication.shared.delegate as! AppDelegate).doSignIn() }) {
+                    Text("Log in")
+                        .foregroundColor(Color.black)
+                }
+                .background(Color.blue)
+            }
+        }
+    }
+
+    struct LogoutButton: ViewModelView {
+        var viewModel: ButtonViewModel<TextViewModelContent>
+        @ObservedObject var ovm: ObservableViewModelAdapter<ButtonViewModel<TextViewModelContent>>
+
+        init(_ viewModel: ButtonViewModel<TextViewModelContent>) {
+            self.viewModel = viewModel
+            self.ovm = viewModel.asObservable()
+        }
+
+        var body: some View {
+            if viewModel.hidden {
+                EmptyView()
+            } else {
+                Button(action: { viewModel.action() }) {
+                    Text("Logout")
+                        .foregroundColor(Color.black)
+                }
+                .background(Color.red)
             }
         }
     }

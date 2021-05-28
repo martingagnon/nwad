@@ -5,10 +5,9 @@ import com.mirego.nwad.repositories.TokenRepository
 import com.mirego.trikot.http.HttpConfiguration
 import com.mirego.trikot.streams.reactive.Publishers
 import com.russhwolf.settings.Settings
-import com.russhwolf.settings.string
 import org.reactivestreams.Publisher
 
-class TokenRepositoryImpl(): TokenRepository {
+class TokenRepositoryImpl() : TokenRepository {
     private val settings: Settings = Settings()
     private val accessTokenKey = "ACCESSTOKEN"
     private val refreshTokenKey = "REFRESHTOKEN"
@@ -16,8 +15,10 @@ class TokenRepositoryImpl(): TokenRepository {
     private val refreshTokenPublisher = Publishers.behaviorSubject(AuthenticateToken.NO_TOKEN)
 
     override fun setToken(accessToken: AuthenticateToken, refreshToken: AuthenticateToken) {
-        val accessTokenString: String = HttpConfiguration.json.encodeToString(AuthenticateToken.serializer(), accessToken)
-        val refreshTokenString: String = HttpConfiguration.json.encodeToString(AuthenticateToken.serializer(), refreshToken)
+        val accessTokenString: String =
+            HttpConfiguration.json.encodeToString(AuthenticateToken.serializer(), accessToken)
+        val refreshTokenString: String =
+            HttpConfiguration.json.encodeToString(AuthenticateToken.serializer(), refreshToken)
         settings.putString(accessTokenKey, accessTokenString)
         settings.putString(refreshTokenKey, refreshTokenString)
         accessTokenPublisher.value = accessToken
@@ -34,10 +35,12 @@ class TokenRepositoryImpl(): TokenRepository {
 
     init {
         settings.getString(accessTokenKey, "").takeIf { it.isNotEmpty() }?.let {
-            accessTokenPublisher.value = HttpConfiguration.json.decodeFromString(AuthenticateToken.serializer(), it)
+            accessTokenPublisher.value =
+                HttpConfiguration.json.decodeFromString(AuthenticateToken.serializer(), it)
         }
         settings.getString(refreshTokenKey, "").takeIf { it.isNotEmpty() }?.let {
-            refreshTokenPublisher.value = HttpConfiguration.json.decodeFromString(AuthenticateToken.serializer(), it)
+            refreshTokenPublisher.value =
+                HttpConfiguration.json.decodeFromString(AuthenticateToken.serializer(), it)
         }
     }
 }

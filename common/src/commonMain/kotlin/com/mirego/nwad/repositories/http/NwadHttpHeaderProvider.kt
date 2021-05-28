@@ -8,7 +8,7 @@ import com.mirego.trikot.streams.cancellable.CancellableManager
 import com.mirego.trikot.streams.reactive.map
 import org.reactivestreams.Publisher
 
-class NwadHttpHeaderProvider(private val tokenRepository: TokenRepository): HttpHeaderProvider {
+class NwadHttpHeaderProvider(private val tokenRepository: TokenRepository) : HttpHeaderProvider {
     override fun headerForURLRequest(
         cancellableManager: CancellableManager,
         requestBuilder: RequestBuilder
@@ -25,6 +25,5 @@ class NwadHttpHeaderProvider(private val tokenRepository: TokenRepository): Http
     }
 
     override fun processHttpError(requestBuilder: RequestBuilder, error: Throwable) {
-
     }
 }

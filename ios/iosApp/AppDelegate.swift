@@ -67,8 +67,8 @@ extension AppDelegate: GIDSignInDelegate {
                 .onSuccess { _ in
                     print("Logged")
                 }
-                .onError { _ in
-                    print("Could not log in")
+                .onError { error in
+                    print("Could not log in \(error)")
                 }
         } else {
             print("Error Google sign in")
