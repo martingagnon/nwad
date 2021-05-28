@@ -20,7 +20,6 @@ class ViewModelFactoryImpl(bootstrap: Bootstrap) : ViewModelFactory {
         return HomeViewModelImpl(cancellableManager)
     }
 
-<<<<<<< HEAD
     override fun createMomentViewModel(cancellableManager: CancellableManager): CreateMomentViewModel {
         return CreateMomentViewModelImpl(
             cancellableManager,
@@ -31,7 +30,7 @@ class ViewModelFactoryImpl(bootstrap: Bootstrap) : ViewModelFactory {
             }
         )
     }
-=======
+
     override fun loginViewModel(): LoginViewModel {
         return LoginViewModelImpl(
             LoginWithTokenUseCaseImpl(
@@ -43,5 +42,4 @@ class ViewModelFactoryImpl(bootstrap: Bootstrap) : ViewModelFactory {
     init {
         HttpConfiguration.baseUrl = "https://nwad-api-2-ci.herokuapp.com"
     }
->>>>>>> 52ca3f4 (Add VM - UseCase - Repo)
 }
