@@ -2,12 +2,8 @@ package components
 
 import react.Fragment
 import react.RProps
-import react.child
 import react.dom.div
 import react.functionalComponent
-import react.router.dom.browserRouter
-import react.router.dom.route
-import react.router.dom.switch
 
 @ExperimentalJsExport
 val Error404NotFound = functionalComponent<RProps> {

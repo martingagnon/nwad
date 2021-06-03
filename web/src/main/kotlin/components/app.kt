@@ -13,10 +13,12 @@ val App = functionalComponent<RProps> {
     browserRouter {
         child(NavBar)
 
-        switch {
-            route("/", exact = true) { child(Home) }
-            route("/moments/:momentId") { child(Moment) }
-            route("*") { child(Error404NotFound) }
+        div(classes = "background") {
+            switch {
+                route("/", exact = true) { child(Home) }
+                route("/moments/:momentId") { child(Moment) }
+                route("*") { child(Error404NotFound) }
+            }
         }
     }
 }
