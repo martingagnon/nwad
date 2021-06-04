@@ -7,16 +7,6 @@ plugins {
     id 'jacoco'
 }
 
-repositories {
-    google()
-    mavenCentral()
-    mavenLocal()
-    maven { url "https://maven.pkg.jetbrains.space/kotlin/p/kotlin/kotlin-js-wrappers" }
-    maven { url "https://kotlin.bintray.com/kotlinx" }
-    maven { url 'https://jitpack.io' }
-    maven { url('https://s3.amazonaws.com/mirego-maven/public') }
-}
-
 group 'com.mirego.nwad'
 
 android {
@@ -146,7 +136,7 @@ kotlin {
             dependsOn commonMain
             dependencies {
                 implementation "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
-                implementation "org.jetbrains:kotlin-extensions:1.0.1-pre.154-kotlin-1.5.0"
+                implementation "org.jetbrains.kotlin-wrappers:kotlin-extensions:1.0.1-pre.206-kotlin-$kotlin_version"
                 implementation(npm("exports-loader", "1.1.1"))
                 implementation(npm("raw-loader", "4.0.2"))
             }
@@ -198,7 +188,7 @@ project.afterEvaluate {
 }
 
 jacoco {
-    toolVersion = "0.8.2"
+    toolVersion = "0.8.7"
     reportsDir = file("build/reports")
 }
 

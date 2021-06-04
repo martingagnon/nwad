@@ -5,8 +5,7 @@ buildscript {
     }
 
     dependencies {
-        classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:1.0.0"
-        classpath 'com.android.tools.build:gradle:7.0.0-alpha15'
+        classpath 'com.android.tools.build:gradle:7.0.0-beta03'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
         classpath 'com.google.gms:google-services:4.3.5'
@@ -25,8 +24,15 @@ allprojects {
         }
     }
     repositories {
-        google()
         mavenLocal()
-        maven { url "https://kotlin.bintray.com/kotlinx" }
+        google()
+        mavenCentral()
+        maven { url("https://kotlin.bintray.com/kotlinx") }
+        maven { url("https://jitpack.io") }
+        maven { url("https://s3.amazonaws.com/mirego-maven/public") }
+        // Deprecated - Required for old transitive dependencies from Trikot, to be removed
+        // when Trikot upgrade to Kotlin 1.5.10
+        // See https://github.com/JetBrains/kotlin-wrappers for more information.
+        maven { url("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/kotlin-js-wrappers") }
     }
 }
