@@ -2,6 +2,7 @@ package com.mirego.nwad.viewmodels.createmoment.impl
 
 import com.mirego.nwad.domain.CreateMomentData
 import com.mirego.nwad.domain.CreateMomentUseCase
+import com.mirego.nwad.viewmodels.components.ImagePickerViewModel
 import com.mirego.nwad.viewmodels.components.ImageViewModelContent
 import com.mirego.nwad.viewmodels.components.TextViewModelContent
 import com.mirego.nwad.viewmodels.createmoment.CreateMomentViewModel
@@ -23,15 +24,6 @@ class CreateMomentViewModelImpl(
     private val isLoading = Publishers.behaviorSubject(false)
     private val imageData = Publishers.behaviorSubject<ByteArray>(ByteArray(0))
 
-    private fun submitMoment() {
-        isLoading.value = true
-        createMomentUseCase.createNewMoment(
-            CreateMomentData(imageData.value!!, titleInput.text)
-        ).finally {
-            isLoading.value = false
-        }
-    }
-
     override val loadingView = ViewModelImpl(cancellableManager).apply {
         bindHidden(isLoading.map { !it })
     }
@@ -42,9 +34,13 @@ class CreateMomentViewModelImpl(
         cancellableManager,
         object : ImageViewModelContent, ImageViewModelImpl(cancellableManager) {}
     ).apply {
-        setAction {
-            // Todo navigate back
-        }
+        // setAction {
+        //     // Todo navigate back
+        // }
+    }
+
+    override fun onImageSelected(data: ByteArray) {
+        imageData.value = data
     }
 
     override val submitButton = ButtonViewModelImpl<TextViewModelContent>(
@@ -57,12 +53,17 @@ class CreateMomentViewModelImpl(
             titleInput.publisherForProperty(TextFieldViewModel::text).safeCombine(imageData)
                 .map { (text, imageData) -> !text.isNullOrEmpty() && imageData.size > 0 }
         )
-        setAction {
-            submitMoment()
-        }
     }
 
-    override fun setImageData(jpegImageData: ByteArray) {
-        imageData.value = jpegImageData
+    init {
+        submitButton.setAction {
+            isLoading.value = true
+            createMomentUseCase.createNewMoment(
+                CreateMomentData(imageData.value!!, titleInput.text),
+                cancellableManager
+            ).finally {
+                isLoading.value = false
+            }
+        }
     }
 }
