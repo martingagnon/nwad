@@ -5,7 +5,7 @@ platform :ios, platformVersion
 
 install! 'cocoapods', :disable_input_output_paths => true
 
-ENV['TRIKOT_FRAMEWORK_NAME']='NwadFramework'
+ENV['TRIKOT_FRAMEWORK_NAME']='NWADFramework'
 
 target 'iosApp' do
   use_frameworks!
