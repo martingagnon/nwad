@@ -5,10 +5,6 @@ config.devServer.port = process.env.CANONICAL_PORT || 3000;
 // See https://webpack.js.org/configuration/dev-server/#devserveropen
 config.devServer.open = false;
 
-// Ease the usage of jasper.local instead of localhost
-// See https://webpack.js.org/configuration/dev-server/#devserverdisablehostcheck
-config.devServer.disableHostCheck = true;
-
 // Use HTML5 History API instead of serving 404 for known routes
 // See https://webpack.js.org/configuration/dev-server/#devserverhistoryapifallback
 config.devServer.historyApiFallback = true;

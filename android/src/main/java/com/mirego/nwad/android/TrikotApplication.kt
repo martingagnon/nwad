@@ -10,6 +10,7 @@ import com.mirego.trikot.http.android.requestFactory.KtorHttpRequestFactory
 import com.mirego.trikot.viewmodels.declarative.controller.ViewModelControllerFactory
 import com.mirego.trikot.viewmodels.declarative.controller.factory.ViewModelControllerFactoryProvidingApplication
 
+@kotlin.time.ExperimentalTime
 class TrikotApplication : Application(), ViewModelControllerFactoryProvidingApplication {
     override fun onCreate() {
         super.onCreate()
