@@ -2,39 +2,39 @@ package movetotrikot
 
 import com.mirego.trikot.streams.cancellable.CancellableManager
 import com.mirego.trikot.streams.reactive.subscribe
-import com.mirego.trikot.viewmodels.declarative.ViewModel
-import react.FunctionalComponent
+import com.mirego.trikot.viewmodels.declarative.viewmodel.VMDViewModel
+import react.FunctionComponent
+import react.PropsWithChildren
 import react.RBuilder
-import react.RProps
-import react.functionalComponent
-import react.useEffectWithCleanup
+import react.functionComponent
+import react.useEffect
 import react.useState
 
-fun <T: ViewModel> useViewModelState(props: ViewModelComponentProp<T>): T {
+fun <T: VMDViewModel> useViewModelState(props: ViewModelComponentProp<T>): T {
     return useViewModelState(props.viewModel)
 }
 
-fun <T: ViewModel> useViewModelState(viewModel: T): T {
+fun <T: VMDViewModel> useViewModelState(viewModel: T): T {
     val (delegate, setDelegate) = useState(Pair(viewModel, 0))
-    useEffectWithCleanup {
+    useEffect {
         val cancellableManager = CancellableManager()
         viewModel.propertyDidChange.subscribe(cancellableManager) {
             setDelegate(Pair(viewModel, delegate.second + 1))
         }
-        return@useEffectWithCleanup { cancellableManager.cancel() }
+        return@useEffect cleanup { cancellableManager.cancel() }
     }
     return delegate.first
 }
 
-fun <T: ViewModel> viewModelComponent(
+fun <T: VMDViewModel> viewModelComponent(
     func: RBuilder.(viewModel: T) -> Unit
-): FunctionalComponent<ViewModelComponentProp<T>> {
-    return functionalComponent<ViewModelComponentProp<T>> { props ->
+): FunctionComponent<ViewModelComponentProp<T>> {
+    return functionComponent { props ->
         val viewModel = useViewModelState(props.viewModel)
         func(viewModel)
     }
 }
 
-external interface ViewModelComponentProp<T: ViewModel>: RProps {
+external interface ViewModelComponentProp<T: VMDViewModel>: PropsWithChildren {
     var viewModel: T
 }

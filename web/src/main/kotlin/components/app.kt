@@ -1,23 +1,34 @@
 package components
 
-import react.RProps
-import react.child
+import react.PropsWithChildren
 import react.dom.div
-import react.functionalComponent
-import react.router.dom.browserRouter
-import react.router.dom.route
-import react.router.dom.switch
+import react.functionComponent
+import react.router.dom.BrowserRouter
+import react.router.dom.Route
+import react.router.dom.Switch
 
 @ExperimentalJsExport
-val App = functionalComponent<RProps> {
-    browserRouter {
+val App = functionComponent<PropsWithChildren> {
+    BrowserRouter {
         child(NavBar)
 
         div(classes = "background") {
-            switch {
-                route("/", exact = true) { child(Home) }
-                route("/moments/:momentId") { child(Moment) }
-                route("*") { child(Error404NotFound) }
+            Switch {
+                Route {
+                    attrs.path = arrayOf("/moments/:momentId")
+                    child(Moment)
+                }
+
+                Route {
+                    attrs.path = arrayOf("/")
+                    attrs.exact = true
+                    child(Home)
+                }
+
+                Route {
+                    attrs.path = arrayOf("*")
+                    child(Error404NotFound)
+                }
             }
         }
     }

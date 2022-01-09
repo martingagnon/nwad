@@ -1,14 +1,14 @@
 package com.mirego.nwad.viewmodels.home
 
 import com.mirego.nwad.viewmodels.components.TextViewModelContent
-import com.mirego.trikot.viewmodels.declarative.ViewModel
-import com.mirego.trikot.viewmodels.declarative.components.ButtonViewModel
-import com.mirego.trikot.viewmodels.declarative.components.ListViewModel
-import com.mirego.trikot.viewmodels.declarative.components.TextViewModel
+import com.mirego.trikot.viewmodels.declarative.components.VMDButtonViewModel
+import com.mirego.trikot.viewmodels.declarative.components.VMDListViewModel
+import com.mirego.trikot.viewmodels.declarative.components.VMDTextViewModel
+import com.mirego.trikot.viewmodels.declarative.viewmodel.VMDViewModel
 
-interface HomeViewModel : ViewModel {
-    val loginButton: ButtonViewModel<TextViewModelContent>
-    val logoutButton: ButtonViewModel<TextViewModelContent>
-    val labelViewModel: TextViewModel
-    val moments: ListViewModel<MomentViewModel>
+interface HomeViewModel : VMDViewModel {
+    val loginButton: VMDButtonViewModel<TextViewModelContent>
+    val logoutButton: VMDButtonViewModel<TextViewModelContent>
+    val labelViewModel: VMDTextViewModel
+    val moments: VMDListViewModel<MomentViewModel>
 }

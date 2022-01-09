@@ -9,17 +9,17 @@ import com.mirego.trikot.streams.cancellable.CancellableManager
 import com.mirego.trikot.streams.reactive.Publishers
 import com.mirego.trikot.streams.reactive.map
 import com.mirego.trikot.streams.reactive.processors.safeCombine
-import com.mirego.trikot.viewmodels.declarative.components.TextFieldViewModel
-import com.mirego.trikot.viewmodels.declarative.components.impl.ButtonViewModelImpl
-import com.mirego.trikot.viewmodels.declarative.components.impl.ImageViewModelImpl
-import com.mirego.trikot.viewmodels.declarative.components.impl.TextFieldViewModelImpl
-import com.mirego.trikot.viewmodels.declarative.components.impl.TextViewModelImpl
-import com.mirego.trikot.viewmodels.declarative.impl.ViewModelImpl
+import com.mirego.trikot.viewmodels.declarative.components.VMDTextFieldViewModel
+import com.mirego.trikot.viewmodels.declarative.components.impl.VMDButtonViewModelImpl
+import com.mirego.trikot.viewmodels.declarative.components.impl.VMDImageViewModelImpl
+import com.mirego.trikot.viewmodels.declarative.components.impl.VMDTextFieldViewModelImpl
+import com.mirego.trikot.viewmodels.declarative.components.impl.VMDTextViewModelImpl
+import com.mirego.trikot.viewmodels.declarative.viewmodel.VMDViewModelImpl
 
 class CreateMomentViewModelImpl(
     cancellableManager: CancellableManager,
     private val createMomentUseCase: CreateMomentUseCase
-) : ViewModelImpl(cancellableManager), CreateMomentViewModel {
+) : VMDViewModelImpl(cancellableManager), CreateMomentViewModel {
     private val isLoading = Publishers.behaviorSubject(false)
     private val imageData = Publishers.behaviorSubject<ByteArray>(ByteArray(0))
 
@@ -32,29 +32,29 @@ class CreateMomentViewModelImpl(
         }
     }
 
-    override val loadingView = ViewModelImpl(cancellableManager).apply {
+    override val loadingView = VMDViewModelImpl(cancellableManager).apply {
         bindHidden(isLoading.map { !it })
     }
 
-    override val titleInput = TextFieldViewModelImpl(cancellableManager)
+    override val titleInput = VMDTextFieldViewModelImpl(cancellableManager)
 
-    override val cancelButton = ButtonViewModelImpl<ImageViewModelContent>(
+    override val cancelButton = VMDButtonViewModelImpl<ImageViewModelContent>(
         cancellableManager,
-        object : ImageViewModelContent, ImageViewModelImpl(cancellableManager) {}
+        object : ImageViewModelContent, VMDImageViewModelImpl(cancellableManager) {}
     ).apply {
         setAction {
             // Todo navigate back
         }
     }
 
-    override val submitButton = ButtonViewModelImpl<TextViewModelContent>(
+    override val submitButton = VMDButtonViewModelImpl<TextViewModelContent>(
         cancellableManager,
-        object : TextViewModelContent, TextViewModelImpl(cancellableManager) {
+        object : TextViewModelContent, VMDTextViewModelImpl(cancellableManager) {
             override var text = "Submit"
         }
     ).apply {
         bindEnabled(
-            titleInput.publisherForProperty(TextFieldViewModel::text).safeCombine(imageData)
+            titleInput.publisherForProperty(VMDTextFieldViewModel::text).safeCombine(imageData)
                 .map { (text, imageData) -> !text.isNullOrEmpty() && imageData.size > 0 }
         )
         setAction {

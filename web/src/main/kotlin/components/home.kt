@@ -3,13 +3,12 @@ package components
 import com.mirego.nwad.factories.Bootstrap
 import com.mirego.trikot.streams.cancellable.CancellableManager
 import react.Fragment
-import react.RProps
-import react.child
+import react.PropsWithChildren
 import react.dom.div
-import react.functionalComponent
+import react.functionComponent
 
 @ExperimentalJsExport
-val Home = functionalComponent<RProps> {
+val Home = functionComponent<PropsWithChildren> {
     val homeViewModel = Bootstrap.viewModelFactory.homeViewModel(CancellableManager())
 
     Fragment {

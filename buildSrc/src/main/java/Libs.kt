@@ -14,7 +14,8 @@ object Libs {
     class Trikot(project: Project) {
         val Foundation = "com.mirego.trikot:trikotFoundation:${project.property("trikot_foundation_version")}"
         val Streams = "com.mirego.trikot:streams:${project.property("trikot_streams_version")}"
-        val ViewmodelsDeclarative = "com.mirego.trikot:viewmodels-declarative-compose:${project.property("trikot_viewmodels_declarative_version")}"
+        val ViewmodelsDeclarative = "com.mirego.trikot:viewmodels-declarative:${project.property("trikot_viewmodels_declarative_version")}"
+        val ViewmodelsDeclarativeCompose = "com.mirego.trikot:viewmodels-declarative-compose:${project.property("trikot_viewmodels_declarative_version")}"
         val Http = "com.mirego.trikot:http:${project.property("trikot_http_version")}"
         val Kword = "com.mirego.trikot:kword:${project.property("trikot_kword_version")}"
         val GraphQL = "com.mirego.trikot:graphql:${project.property("trikot_graphql_version")}"
@@ -34,8 +35,8 @@ object Libs {
 
             object KotlinWrappers {
                 const val Extensions = "org.jetbrains.kotlin-wrappers:kotlin-extensions:${Versions.KotlinWrappers.EXTENSIONS}-kotlin-${Versions.KOTLIN}"
-                const val React = "org.jetbrains.kotlin-wrappers:kotlin-react:${Versions.REACT}-kotlin-${Versions.KOTLIN}"
-                const val ReactDom = "org.jetbrains.kotlin-wrappers:kotlin-react-dom:${Versions.REACT}-kotlin-${Versions.KOTLIN}"
+                const val React = "org.jetbrains.kotlin-wrappers:kotlin-react:${Versions.KotlinWrappers.REACT}-kotlin-${Versions.KOTLIN}"
+                const val ReactDom = "org.jetbrains.kotlin-wrappers:kotlin-react-dom:${Versions.KotlinWrappers.REACT}-kotlin-${Versions.KOTLIN}"
                 const val ReactRouterDom = "org.jetbrains.kotlin-wrappers:kotlin-react-router-dom:${Versions.KotlinWrappers.ROUTER}-kotlin-${Versions.KOTLIN}"
                 const val Styled = "org.jetbrains.kotlin-wrappers:kotlin-styled:${Versions.KotlinWrappers.STYLED}-kotlin-${Versions.KOTLIN}"
             }

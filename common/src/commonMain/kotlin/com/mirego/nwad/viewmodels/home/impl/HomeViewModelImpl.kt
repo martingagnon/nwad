@@ -12,10 +12,10 @@ import com.mirego.trikot.kword.I18N
 import com.mirego.trikot.streams.cancellable.CancellableManager
 import com.mirego.trikot.streams.reactive.Publishers
 import com.mirego.trikot.streams.reactive.map
-import com.mirego.trikot.viewmodels.declarative.components.impl.ButtonViewModelImpl
-import com.mirego.trikot.viewmodels.declarative.components.impl.ListViewModelImpl
-import com.mirego.trikot.viewmodels.declarative.components.impl.TextViewModelImpl
-import com.mirego.trikot.viewmodels.declarative.impl.ViewModelImpl
+import com.mirego.trikot.viewmodels.declarative.components.impl.VMDButtonViewModelImpl
+import com.mirego.trikot.viewmodels.declarative.components.impl.VMDListViewModelImpl
+import com.mirego.trikot.viewmodels.declarative.components.impl.VMDTextViewModelImpl
+import com.mirego.trikot.viewmodels.declarative.viewmodel.VMDViewModelImpl
 import kotlin.time.seconds
 
 class HomeViewModelImpl(
@@ -23,15 +23,15 @@ class HomeViewModelImpl(
     isLoggedUseCase: IsLoggedUseCase,
     logoutUseCase: LogoutUseCase,
     i18N: I18N
-) : HomeViewModel, ViewModelImpl(cancellableManager) {
+) : HomeViewModel, VMDViewModelImpl(cancellableManager) {
     private val publisher = Publishers.behaviorSubject(0)
 
-    override val labelViewModel = TextViewModelImpl(cancellableManager).apply {
+    override val labelViewModel = VMDTextViewModelImpl(cancellableManager).apply {
         text = "initial"
         bindText(publisher.map { "Hello world! $it" })
     }
 
-    override val moments = ListViewModelImpl<MomentViewModel>(cancellableManager).apply {
+    override val moments = VMDListViewModelImpl<MomentViewModel>(cancellableManager).apply {
         bindElements(
             FetchMomentsUseCaseImpl(MomentsRepositoryImpl()).fetchMoments().map { moments ->
                 moments.map {
@@ -41,18 +41,18 @@ class HomeViewModelImpl(
         )
     }
 
-    override val loginButton = ButtonViewModelImpl<TextViewModelContent>(
+    override val loginButton = VMDButtonViewModelImpl<TextViewModelContent>(
         cancellableManager,
-        object : TextViewModelContent, TextViewModelImpl(cancellableManager) {
+        object : TextViewModelContent, VMDTextViewModelImpl(cancellableManager) {
             override var text = "Login"
         }
     ).apply {
         bindHidden(isLoggedUseCase.isLogged())
     }
 
-    override val logoutButton = ButtonViewModelImpl<TextViewModelContent>(
+    override val logoutButton = VMDButtonViewModelImpl<TextViewModelContent>(
         cancellableManager,
-        object : TextViewModelContent, TextViewModelImpl(cancellableManager) {
+        object : TextViewModelContent, VMDTextViewModelImpl(cancellableManager) {
             override var text = "Logout"
         }
     ).apply {

@@ -1,6 +1,6 @@
 package com.mirego.nwad.viewmodels.components
 
-import com.mirego.trikot.viewmodels.declarative.components.ImageViewModel
-import com.mirego.trikot.viewmodels.declarative.properties.Content
+import com.mirego.trikot.viewmodels.declarative.components.VMDImageViewModel
+import com.mirego.trikot.viewmodels.declarative.content.VMDContent
 
-interface ImageViewModelContent : ImageViewModel, Content
+interface ImageViewModelContent : VMDImageViewModel, VMDContent
