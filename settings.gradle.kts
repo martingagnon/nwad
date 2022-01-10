@@ -4,7 +4,7 @@ pluginManagement {
             maven(url = "https://plugins.gradle.org/m2/")
             maven(url = "https://s3.amazonaws.com/mirego-maven/public")
             maven(url = "https://jitpack.io")
-            jcenter()
+            mavenCentral()
         }
         
         eachPlugin {

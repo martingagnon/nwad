@@ -17,7 +17,7 @@ android {
         minSdk = Versions.MIN_SDK
     }
     sourceSets {
-        val main by getting {
+        getByName("main") {
             resources.srcDir("src/commonMain/resources/")
         }
     }
@@ -85,10 +85,10 @@ kotlin {
 
     sourceSets {
         all {
-            languageSettings.useExperimentalAnnotation("kotlin.Experimental")
-            languageSettings.useExperimentalAnnotation("kotlin.time.ExperimentalTime")
-            languageSettings.useExperimentalAnnotation("kotlin.js.ExperimentalJsExport")
-            languageSettings.useExperimentalAnnotation("kotlinx.serialization.ExperimentalSerializationApi")
+            languageSettings.optIn("kotlin.Experimental")
+            languageSettings.optIn("kotlin.time.ExperimentalTime")
+            languageSettings.optIn("kotlin.js.ExperimentalJsExport")
+            languageSettings.optIn("kotlinx.serialization.ExperimentalSerializationApi")
         }
 
         val commonMain by getting {
@@ -191,9 +191,9 @@ val copyFramework by tasks.creating {
 
 project.afterEvaluate {
     project.tasks.filter { task -> task.name.startsWith("compile") && task.name.contains("Kotlin") }
-            .forEach { task ->
-                task.dependsOn("kwordGenerateEnum")
-            }
+        .forEach { task ->
+            task.dependsOn("kwordGenerateEnum")
+        }
 }
 
 jacoco {
@@ -213,20 +213,25 @@ val jacocoTestReport by tasks.creating(JacocoReport::class) {
     }
     val excludes: (ConfigurableFileTree) -> Unit = {
         it.exclude(
-                "**/serializer.class",
-                "**/factories**",
-                "**/models**",
-                "com/mirego/jasper/Environment**",
-                "com/mirego/jasper/localization",
-                "com/mirego/jasper/api/DataState**"
+            "**/serializer.class",
+            "**/factories**",
+            "**/models**",
+            "com/mirego/jasper/Environment**",
+            "com/mirego/jasper/localization",
+            "com/mirego/jasper/api/DataState**"
         )
     }
     classDirectories.setFrom(
-            listOf(
-                    fileTree("build/intermediates/classes/debug", excludes),
-                    fileTree("build/tmp/kotlin-classes/debug", excludes)
-            )
+        listOf(
+            fileTree("build/intermediates/classes/debug", excludes),
+            fileTree("build/tmp/kotlin-classes/debug", excludes)
+        )
     )
     executionData.setFrom(files("build/jacoco/testDebugUnitTest.exec"))
     sourceDirectories.setFrom(files(listOf("src/commonMain/kotlin")))
+}
+
+rootProject.plugins.withType(org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootPlugin::class.java) {
+    rootProject.the<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension>().versions.webpackCli.version =
+        "4.9.0"
 }

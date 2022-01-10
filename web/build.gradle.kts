@@ -3,16 +3,16 @@ import com.github.gradle.node.npm.task.NpxTask
 buildscript {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
         maven(url = "https://plugins.gradle.org/m2/")
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:4.2.1")
+        classpath("com.android.tools.build:gradle:7.0.4")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.KOTLIN}")
         classpath("org.jetbrains.kotlin:kotlin-serialization:${Versions.KOTLIN}")
-        classpath("com.google.gms:google-services:4.3.8")
-        classpath("org.jlleitschuh.gradle:ktlint-gradle:10.0.0")
+        classpath("com.google.gms:google-services:4.3.10")
+        classpath("org.jlleitschuh.gradle:ktlint-gradle:10.2.0")
     }
 }
 
@@ -83,4 +83,9 @@ val buildTailwindCss = tasks.register<NpxTask>("buildTailwindCss") {
 
 val processResources by tasks.existing(ProcessResources::class) {
     dependsOn("buildTailwindCss")
+}
+
+rootProject.plugins.withType(org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootPlugin::class.java) {
+    rootProject.the<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension>().versions.webpackCli.version =
+        "4.9.0"
 }

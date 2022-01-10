@@ -17,12 +17,12 @@ import com.mirego.nwad.viewmodels.home.HomeViewModel
 import com.mirego.nwad.viewmodels.home.HomeViewModelController
 import com.mirego.trikot.viewmodels.declarative.compose.extensions.observeAsState
 import com.mirego.trikot.viewmodels.declarative.compose.viewmodel.RemoteImage
-import com.mirego.trikot.viewmodels.declarative.controller.NavigationDelegate
+import com.mirego.trikot.viewmodels.declarative.controller.VMDNavigationDelegate
 import com.mirego.trikot.viewmodels.declarative.controller.ViewModelActivity
-import com.mirego.trikot.viewmodels.declarative.properties.ImageDescriptor
+import com.mirego.trikot.viewmodels.declarative.properties.VMDImageDescriptor
 
 class MainActivity :
-    ViewModelActivity<HomeViewModelController, HomeViewModel, NavigationDelegate>() {
+    ViewModelActivity<HomeViewModelController, HomeViewModel, VMDNavigationDelegate>() {
     override val viewModelController: HomeViewModelController by lazy {
         getViewModelController(
             HomeViewModelController::class
@@ -51,7 +51,7 @@ class MainActivity :
         ) {
             Text(obsText.value, color = Color.Blue)
             moments.value.forEach { moment ->
-                RemoteImage(imageUrl = (moment.image.image as ImageDescriptor.Remote).url)
+                RemoteImage(imageUrl = (moment.image.image as VMDImageDescriptor.Remote).url)
                 Text(moment.title.text, color = Color.Black)
             }
         }

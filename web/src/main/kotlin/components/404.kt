@@ -1,12 +1,12 @@
 package components
 
 import react.Fragment
-import react.RProps
+import react.PropsWithChildren
 import react.dom.div
-import react.functionalComponent
+import react.functionComponent
 
 @ExperimentalJsExport
-val Error404NotFound = functionalComponent<RProps> {
+val Error404NotFound = functionComponent<PropsWithChildren> {
     Fragment {
         div(classes = "container mx-auto p-4 text-gray-500") {
             div(classes = "mb-3 text-3xl font-semibold") {

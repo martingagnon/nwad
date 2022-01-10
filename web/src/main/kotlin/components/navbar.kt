@@ -1,23 +1,22 @@
 package components
 
 import kotlinext.js.require
-import react.FunctionalComponent
-import react.RProps
-import react.child
+import react.FunctionComponent
+import react.PropsWithChildren
 import react.dom.a
 import react.dom.div
 import react.dom.nav
-import react.functionalComponent
+import react.functionComponent
 
-external interface ImageProps : RProps {
+external interface ImageProps : PropsWithChildren {
     var width: String?
     var height: String?
 }
 
 @Suppress("UnsafeCastFromDynamic")
-val nwadLogo: FunctionalComponent<ImageProps> = require("./images/nwad-logo.svg").default
+val nwadLogo: FunctionComponent<ImageProps> = require("./images/nwad-logo.svg").default
 
-val NavBar = functionalComponent<RProps> {
+val NavBar = functionComponent<PropsWithChildren> {
     nav(classes = "bg-white border border-gray-300") {
         div(classes = "mx-auto px-2") {
             div(classes = "relative flex items-center h-16") {

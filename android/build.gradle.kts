@@ -34,7 +34,6 @@ android {
         mavenLocal()
         google()
         mavenCentral()
-        maven(url = "https://kotlin.bintray.com/kotlinx")
         maven(url = "https://s3.amazonaws.com/mirego-maven/public")
     }
 
@@ -67,9 +66,9 @@ dependencies {
     implementation(Libs.Kotlin.Stdlib)
     implementation(Libs.Kotlinx.SerializationJson)
     implementation(Libs.AndroidX.AppCompat)
-    implementation(Libs.Trikot(project).ViewmodelsDeclarative)
+    implementation(Libs.Trikot(project).ViewmodelsDeclarativeCompose)
 
-    implementation("androidx.activity:activity-compose:1.3.0-beta01")
+    implementation("androidx.activity:activity-compose:1.4.0")
     implementation("androidx.compose.runtime:runtime:${Versions.JETPACK_COMPOSE}")
     implementation("androidx.compose.ui:ui:${Versions.JETPACK_COMPOSE}")
     implementation("androidx.compose.foundation:foundation:${Versions.JETPACK_COMPOSE}")
@@ -77,16 +76,16 @@ dependencies {
     implementation("androidx.compose.material:material:${Versions.JETPACK_COMPOSE}")
     implementation("androidx.compose.runtime:runtime-livedata:${Versions.JETPACK_COMPOSE}")
     implementation("androidx.compose.ui:ui-tooling:${Versions.JETPACK_COMPOSE}")
-    implementation("com.google.android.material:compose-theme-adapter:${Versions.JETPACK_COMPOSE}")
+    implementation("com.google.android.material:compose-theme-adapter:1.1.2")
 }
 
 ktlint {
     android.set(true)
 }
 //
-//tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+//  tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
 //    kotlinOptions {
 //        jvmTarget = "11"
 //        useIR = true
 //    }
-//}
+//  }

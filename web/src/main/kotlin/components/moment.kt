@@ -1,18 +1,14 @@
 package components
 
 import react.Fragment
-import react.RProps
+import react.PropsWithChildren
 import react.dom.div
-import react.functionalComponent
+import react.functionComponent
 import react.router.dom.useParams
 
-external interface MomentParams : RProps {
-    var momentId: String
-}
-
 @ExperimentalJsExport
-val Moment = functionalComponent<RProps> {
-    val momentId = useParams<MomentParams>()?.momentId ?: return@functionalComponent
+val Moment = functionComponent<PropsWithChildren> {
+    val momentId = useParams()["momentId"] ?: return@functionComponent
 
     Fragment {
         div(classes = "container mx-auto px-4") {
