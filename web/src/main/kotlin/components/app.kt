@@ -1,33 +1,36 @@
 package components
 
+import react.FC
 import react.PropsWithChildren
-import react.dom.div
-import react.functionComponent
+import react.create
+import react.createElement
+import react.dom.html.ReactHTML.div
 import react.router.dom.BrowserRouter
-import react.router.dom.Route
-import react.router.dom.Switch
+import react.router.Routes
+import react.router.Route
 
 @ExperimentalJsExport
-val App = functionComponent<PropsWithChildren> {
+val App = FC<PropsWithChildren> {
     BrowserRouter {
-        child(NavBar)
+        NavBar
 
-        div(classes = "background") {
-            Switch {
+        div {
+            className = "background"
+
+            Routes {
                 Route {
-                    attrs.path = arrayOf("/moments/:momentId")
-                    child(Moment)
+                    index = true
+                    element = createElement(Home)
                 }
 
                 Route {
-                    attrs.path = arrayOf("/")
-                    attrs.exact = true
-                    child(Home)
+                    path = "/moments/:momentId"
+                    element = createElement(Moment)
                 }
 
                 Route {
-                    attrs.path = arrayOf("*")
-                    child(Error404NotFound)
+                    path = "*"
+                    element = createElement(Error404NotFound)
                 }
             }
         }

@@ -3,10 +3,9 @@ package movetotrikot
 import com.mirego.trikot.streams.cancellable.CancellableManager
 import com.mirego.trikot.streams.reactive.subscribe
 import com.mirego.trikot.viewmodels.declarative.viewmodel.VMDViewModel
-import react.FunctionComponent
+import react.ChildrenBuilder
+import react.FC
 import react.PropsWithChildren
-import react.RBuilder
-import react.functionComponent
 import react.useEffect
 import react.useState
 
@@ -27,9 +26,9 @@ fun <T: VMDViewModel> useViewModelState(viewModel: T): T {
 }
 
 fun <T: VMDViewModel> viewModelComponent(
-    func: RBuilder.(viewModel: T) -> Unit
-): FunctionComponent<ViewModelComponentProp<T>> {
-    return functionComponent { props ->
+    func: ChildrenBuilder.(viewModel: T) -> Unit
+): FC<ViewModelComponentProp<T>> {
+    return FC { props ->
         val viewModel = useViewModelState(props.viewModel)
         func(viewModel)
     }
