@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    compileSdkVersion(Versions.COMPILE_SDK)
+    compileSdk = Versions.COMPILE_SDK
 
     defaultConfig {
-        minSdkVersion(Versions.MIN_SDK)
-        targetSdkVersion(Versions.TARGET_SDK)
+        minSdk = Versions.MIN_SDK
+        targetSdk = Versions.TARGET_SDK
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -39,7 +39,6 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
-        useIR = true
         freeCompilerArgs = freeCompilerArgs +
             "-Xopt-in=kotlin.time.ExperimentalTime" +
             "-Xopt-in=kotlin.ExperimentalStdlibApi"
@@ -76,16 +75,9 @@ dependencies {
     implementation("androidx.compose.material:material:${Versions.JETPACK_COMPOSE}")
     implementation("androidx.compose.runtime:runtime-livedata:${Versions.JETPACK_COMPOSE}")
     implementation("androidx.compose.ui:ui-tooling:${Versions.JETPACK_COMPOSE}")
-    implementation("com.google.android.material:compose-theme-adapter:1.1.2")
+    implementation("com.google.android.material:compose-theme-adapter:1.1.3")
 }
 
 ktlint {
     android.set(true)
 }
-//
-//  tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
-//    kotlinOptions {
-//        jvmTarget = "11"
-//        useIR = true
-//    }
-//  }

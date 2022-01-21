@@ -1,17 +1,19 @@
 package components
 
+import react.FC
 import react.Fragment
 import react.PropsWithChildren
-import react.dom.div
-import react.functionComponent
-import react.router.dom.useParams
+import react.dom.html.ReactHTML.div
+import react.router.useParams
 
 @ExperimentalJsExport
-val Moment = functionComponent<PropsWithChildren> {
-    val momentId = useParams()["momentId"] ?: return@functionComponent
+val Moment = FC<PropsWithChildren> {
+    val momentId = useParams()["momentId"] ?: return@FC
 
     Fragment {
-        div(classes = "container mx-auto px-4") {
+        div {
+            className = "container mx-auto px-4"
+
             +"Moment $momentId"
         }
     }

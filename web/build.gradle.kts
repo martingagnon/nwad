@@ -28,7 +28,6 @@ dependencies {
     implementation(Libs.Kotlin.Js.KotlinWrappers.ReactDom)
     implementation(Libs.Kotlin.Js.KotlinWrappers.ReactRouterDom)
     implementation(Libs.Kotlin.Js.KotlinWrappers.Extensions)
-    implementation(Libs.Kotlin.Js.KotlinWrappers.Styled)
 
     testImplementation(Libs.Kotlin.Js.Test)
 
